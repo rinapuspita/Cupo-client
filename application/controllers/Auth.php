@@ -25,6 +25,8 @@ class Auth extends CI_Controller {
 			$this->session->set_userdata('token',  $data['user']["token"]);
 			$this->session->set_userdata('name',  $data['user']["full_name"]);
 			$this->session->set_userdata('email',  $data['user']["email"]);
+			$this->session->set_userdata('level',  $data['user']["level"]);
+			$this->session->set_userdata('created',  $data['user']["created_at"]);
 			// var_dump($data['user']);
 			// die;
 			if($data['user']["level"] == 1) {

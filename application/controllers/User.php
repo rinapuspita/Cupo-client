@@ -13,6 +13,8 @@ class User extends CI_Controller {
 		$token = $this->session->userdata('token');
 		$data['title'] = 'User Profile';
 		$data['user'] = $this->user_model->getLogin($token);
+		// $data['user'] =  $this->session->userdata('name');
+		// $data['user'] =  $this->session->userdata('email');
 		// $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 		// echo 'Selamat Datang ' . $data['user']['name'];
 

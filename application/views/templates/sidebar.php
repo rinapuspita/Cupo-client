@@ -18,6 +18,7 @@
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span></a>
 </li>
+<?php if($this->session->userdata('level') == '1'){ ?>
 
 <!-- Divider -->
 <hr class="sidebar-divider">
@@ -54,6 +55,30 @@
 <li class="nav-item">
     <a class="nav-link" href="#" >
         <i class="fas fa-fw fa-folder"></i>
+        <span>Request Cup</span>
+    </a>
+</li>
+
+<!-- Nav Item - Charts -->
+<li class="nav-item">
+    <a class="nav-link" href="charts.html">
+        <i class="fas fa-fw fa-chart-area"></i>
+        <span>Return Cup</span></a>
+</li>
+<?php } ?>
+<?php if($this->session->userdata('level') == '2'){ ?>
+<!-- Nav Item - Pages Collapse Menu -->
+<li class="nav-item">
+    <a class="nav-link" href="<?= base_url('produk'); ?>">
+        <i class="fas fa-fw fa-cog"></i>
+        <span>Produk</span>
+    </a>
+</li>
+
+<!-- Nav Item - Pages Collapse Menu -->
+<li class="nav-item">
+    <a class="nav-link" href="#" >
+        <i class="fas fa-fw fa-folder"></i>
         <span>Peminjaman</span>
     </a>
 </li>
@@ -64,13 +89,7 @@
         <i class="fas fa-fw fa-chart-area"></i>
         <span>Pengembalian</span></a>
 </li>
-
-<!-- Nav Item - Tables -->
-<!-- <li class="nav-item">
-    <a class="nav-link" href="tables.html">
-        <i class="fas fa-fw fa-table"></i>
-        <span>Tables</span></a>
-</li> -->
+<?php } ?>
 
 <!-- Divider -->
 <hr class="sidebar-divider d-none d-md-block">

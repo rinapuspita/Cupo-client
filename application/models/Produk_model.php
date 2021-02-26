@@ -6,7 +6,7 @@ class Produk_model extends CI_Model {
     private $_produk;
     public function __construct(){
         $this->_produk = new Client([
-            'base_uri' => 'http://localhost/rest-server-cupo/'
+            'base_uri' => 'https://rest-server-cupo.000webhostapp.com/'
         ]);
     }
 
