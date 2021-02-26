@@ -67,6 +67,7 @@
 </li>
 <?php } ?>
 <?php if($this->session->userdata('level') == '2'){ ?>
+
 <!-- Nav Item - Pages Collapse Menu -->
 <li class="nav-item">
     <a class="nav-link" href="<?= base_url('produk'); ?>">
