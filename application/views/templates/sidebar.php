@@ -26,8 +26,8 @@
 <!-- Nav Item - Pages Collapse Menu -->
 <li class="nav-item">
     <a class="nav-link" href="<?= base_url('produk'); ?>">
-        <i class="fas fa-fw fa-cog"></i>
-        <span>Produk</span>
+        <i class="fa fa-beer"></i>
+        <span>Data Produk</span>
     </a>
 </li>
 
@@ -35,36 +35,36 @@
 <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
         aria-expanded="true" aria-controls="collapseUtilities">
-        <i class="fas fa-fw fa-wrench"></i>
+        <i class="fa fa-users"></i>
         <span>Data User</span>
     </a>
     <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
         data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <!-- <a class="collapse-item" href="#">Data Admin</a> -->
-            <a class="collapse-item" href="#">Data Mitra</a>
-            <a class="collapse-item" href="#">Data Customer</a>
+            <a class="collapse-item" href="<?= base_url('admin/dataMitra'); ?>">Data Mitra</a>
+            <a class="collapse-item" href="<?= base_url('admin/dataCust'); ?>">Data Customer</a>
         </div>
     </div>
 </li>
 
 <!-- Divider -->
-<hr class="sidebar-divider">
+<!-- <hr class="sidebar-divider"> -->
 
 <!-- Nav Item - Pages Collapse Menu -->
-<li class="nav-item">
+<!-- <li class="nav-item">
     <a class="nav-link" href="#" >
         <i class="fas fa-fw fa-folder"></i>
         <span>Request Cup</span>
     </a>
-</li>
+</li> -->
 
 <!-- Nav Item - Charts -->
-<li class="nav-item">
+<!-- <li class="nav-item">
     <a class="nav-link" href="charts.html">
         <i class="fas fa-fw fa-chart-area"></i>
         <span>Return Cup</span></a>
-</li>
+</li> -->
 <?php } ?>
 <?php if($this->session->userdata('level') == '2'){ ?>
 

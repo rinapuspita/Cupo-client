@@ -21,6 +21,17 @@ class User_model extends CI_Model {
         return $result['data'];
     }
 
+    public function getCust()
+    {
+        $response = $this->_user->request('GET', 'api/customer/',[
+            'query' => [
+                'X-API-KEY' => 'apikey'
+            ]
+        ]);
+        $result = json_decode($response->getBody()->getContents(), true);
+        return $result['data'];
+    }
+
     public function getUserByID($id)
     {
         $response = $this->_user->request('GET', 'users/get',[
@@ -35,6 +46,32 @@ class User_model extends CI_Model {
 
     public function userRegister()
     {
+        try{
+            $fullname= $this->input->post('fullname', true);
+            $username= $this->input->post('username', true);
+            $email= $this->input->post('email', true);
+            $password= $this->input->post('password', true); 
+            $data = [
+                'fullname' => $fullname,
+                'username' => $username,
+                'email' => $email,
+                'password' => $password,
+                "X-API-KEY" => 'apikey'
+            ];
+    
+            // $this->db->insert('mahasiswa', $data);
+            $response = $this->_user->request('POST', 'users/register',[
+                'form_params' => $data
+            ]);
+            $result = json_decode($response->getBody()->getContents(), true);
+            return $result;
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            echo $e->getResponse()->getBody()->getContents();
+        }
+    }
+
+    public function custRegister()
+    {
         $data = [
             "fullname" => $this->input->post('fullname', true),
             "username" => $this->input->post('username', true),
@@ -44,7 +81,7 @@ class User_model extends CI_Model {
         ];
 
         // $this->db->insert('mahasiswa', $data);
-        $response = $this->_user->request('POST', 'users/register',[
+        $response = $this->_user->request('POST', 'api/customer/',[
             'form_params' => $data
         ]);
         $result = json_decode($response->getBody()->getContents(), true);
