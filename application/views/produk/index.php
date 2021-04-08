@@ -8,8 +8,9 @@
       <div class="row">
         <div class="table-responsive">
         <?= form_error('produk','<div class="alert alert-danger" role="alert">', '</div>'); ?>
-  
-        <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newRoleModal">Tambah Produk Baru</a>
+        <?php if($this->session->userdata('level') == '1'){ ?>
+          <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newRoleModal">Tambah Produk Baru</a>
+        <?php } ?>
           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
               <tr>

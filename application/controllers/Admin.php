@@ -48,10 +48,8 @@ class Admin extends CI_Controller {
     {
         $data['title'] = 'Data Mitra | Cupo';
         $this->form_validation->set_rules('fullname', 'fullname', 'trim|required|max_length[50]');
-        $this->form_validation->set_rules('username', 'username', 'trim|required|is_unique[user.username]|alpha_numeric',
-        array('is_unique' => 'This %s already exists please enter another username'));
-        $this->form_validation->set_rules('email', 'email', 'trim|required|valid_email|max_length[60]|is_unique[user.email]',
-        array('is_unique' => 'This %s already exists please enter another email address'));
+        $this->form_validation->set_rules('username', 'username', 'trim|required');
+        $this->form_validation->set_rules('email', 'email', 'trim|required|valid_email|max_length[60]');
         $this->form_validation->set_rules('password', 'password', 'trim|required|max_length[25]');
         if ($this->form_validation->run()==true) {
             if($this->user_model->userRegister()>0){

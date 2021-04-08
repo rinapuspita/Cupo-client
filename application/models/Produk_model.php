@@ -26,6 +26,23 @@ class Produk_model extends CI_Model {
         }
     }
 
+    public function getM_Produk($id)
+    {
+        try{
+            $response = $this->_produk->request('GET', 'api/produk/mProd',[
+                'query' => [
+                    'X-API-KEY' => 'apikey',
+                    'id_mitra' => $id
+                ]
+            ]);
+            $result = json_decode($response->getBody()->getContents(), true);
+            return $result['data'];
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            // echo $e->getResponse()->getBody()->getContents();
+            $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Data Produk Kosong</div>');
+        }
+    }
+
     public function getProdukByID($id)
     {
         try{
@@ -40,7 +57,6 @@ class Produk_model extends CI_Model {
         } catch(\GuzzleHttp\Exception\ClientException $e) {
             echo $e->getResponse()->getBody()->getContents();
         }
-        
     }
 
     public function addProduk()

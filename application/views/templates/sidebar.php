@@ -4,22 +4,27 @@
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
     <div class="sidebar-brand-icon rotate-n-15">
-        <i class="fas fa-laugh-wink"></i>
+        <img src="<?= 'https://rest-server-cupo.000webhostapp.com/assets/images/logo.png'?>" style="width: 35px; height:40px;"/>
+        <!-- <i class="fas fa-laugh-wink"></i> -->
     </div>
-    <div class="sidebar-brand-text mx-3">Cupo Admin</div>
+    <?php if($this->session->userdata('level') == '1'){ ?>
+        <div class="sidebar-brand-text mx-3">Cupo Admin</div>
+    <?php } ?>
+    <?php if($this->session->userdata('level') == '2'){ ?>
+        <div class="sidebar-brand-text mx-3">Cupo Mitra</div>
+    <?php } ?>
 </a>
 
 <!-- Divider -->
 <hr class="sidebar-divider my-0">
 
+<?php if($this->session->userdata('level') == '1'){ ?>
 <!-- Nav Item - Dashboard -->
 <li class="nav-item active">
     <a class="nav-link" href="#">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span></a>
 </li>
-<?php if($this->session->userdata('level') == '1'){ ?>
-
 <!-- Divider -->
 <hr class="sidebar-divider">
 
@@ -67,10 +72,15 @@
 </li> -->
 <?php } ?>
 <?php if($this->session->userdata('level') == '2'){ ?>
-
+<!-- Nav Item - Dashboard -->
+<li class="nav-item active">
+    <a class="nav-link" href="<?= base_url('user'); ?>">
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span>Dashboard</span></a>
+</li>
 <!-- Nav Item - Pages Collapse Menu -->
 <li class="nav-item">
-    <a class="nav-link" href="<?= base_url('produk'); ?>">
+    <a class="nav-link" href="<?= base_url('produk/dataMitra'); ?>">
         <i class="fas fa-fw fa-cog"></i>
         <span>Produk</span>
     </a>
@@ -78,7 +88,7 @@
 
 <!-- Nav Item - Pages Collapse Menu -->
 <li class="nav-item">
-    <a class="nav-link" href="#" >
+    <a class="nav-link" href="<?= base_url('peminjaman/'); ?>" >
         <i class="fas fa-fw fa-folder"></i>
         <span>Peminjaman</span>
     </a>
@@ -86,7 +96,7 @@
 
 <!-- Nav Item - Charts -->
 <li class="nav-item">
-    <a class="nav-link" href="charts.html">
+    <a class="nav-link" href="<?= base_url('pengembalian/'); ?>">
         <i class="fas fa-fw fa-chart-area"></i>
         <span>Pengembalian</span></a>
 </li>

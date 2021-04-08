@@ -9,7 +9,7 @@
 
           <div class="div col">
             <div class="div col-lg-6">
-              <?= $this->session->flashdata('message'); ?>
+              <!-- <?= $this->session->flashdata('message'); ?> -->
             </div>
           </div>
 
@@ -22,7 +22,7 @@
                 <div class="card-body">
                   <h5 class="card-title"><?=  $this->session->userdata('name')?></h5>
                   <p class="card-text"><?=  $this->session->userdata('email')?></p>
-                  <p class="card-text"><small class="text-muted">Member since <?= date('d F Y',  $this->session->userdata('created'));?></small></p>
+                  <p class="card-text"><small class="text-muted">Member since <?= date('d F Y',  $this->session->userdata('created_at'));?></small></p>
                 </div>
               </div>
             </div>

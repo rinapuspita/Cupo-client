@@ -7,13 +7,11 @@ class Produk extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('produk_model');
-        // $this->load->model('user_model');
 	}
 
 	public function index() 
 	{
 		$token = $this->session->userdata('token');
-		// $data['user'] = $this->user_model->getLogin($token);
 		$data['title'] = 'Data Produk | Cupo';
         $data['produk'] = $this->produk_model->getProduk($token);
 		$this->load->view('templates/header', $data);
@@ -22,6 +20,26 @@ class Produk extends CI_Controller {
 		$this->load->view('produk/index');
 		$this->load->view('templates/footer');
 	}
+
+    public function dataMitra()
+    {
+        $id = 2;
+        $data['title'] = 'Data Produk | Cupo';
+        $data['produk'] = $this->produk_model->getM_Produk($id);
+        if($data['produk']>0){
+            $this->load->view('templates/header', $data);
+		    $this->load->view('templates/sidebar', $data);
+		    $this->load->view('templates/topbar', $data);
+		    $this->load->view('produk/index');
+		    $this->load->view('templates/footer');    
+        } else{
+            $this->load->view('templates/header', $data);
+		    $this->load->view('templates/sidebar', $data);
+		    $this->load->view('templates/topbar', $data);
+		    $this->load->view('produk/404');
+		    $this->load->view('templates/footer');    
+        }
+    }
 
     public function add()
     {

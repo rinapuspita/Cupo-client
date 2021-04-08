@@ -21,21 +21,29 @@ class Auth extends CI_Controller {
 			$this->load->view('templates/auth_footer');
 		} else {
 			$data['user'] = $this->user_model->userLogin();
-			$this->session->set_userdata('token',  $data['user']["token"]);
-			$this->session->set_userdata('name',  $data['user']["full_name"]);
-			$this->session->set_userdata('email',  $data['user']["email"]);
-			$this->session->set_userdata('level',  $data['user']["level"]);
-			$this->session->set_userdata('created',  $data['user']["created_at"]);
-			// var_dump($data['user']);
-			// die;
-			if($data['user']["level"] == 1) {
-				redirect('admin');
-				$this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Success Login Admin !	</div>');
-				// echo 'Berhasil Login';
-			} else {
-				redirect('user');
-				// echo 'Berhasil Login';
-				$this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Success Login Mitra !	</div>');
+			if($data['user']>0){
+				$this->session->set_userdata('user_id',  $data['user']["user_id"]);
+				$this->session->set_userdata('token',  $data['user']["token"]);
+				$this->session->set_userdata('name',  $data['user']["full_name"]);
+				$this->session->set_userdata('email',  $data['user']["email"]);
+				$this->session->set_userdata('level',  $data['user']["level"]);
+				$this->session->set_userdata('created',  $data['user']["created_at"]);
+				// var_dump($data['user']);
+				// die;
+				if($data['user']["level"] == 1) {
+					redirect('admin');
+					$this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Success Login Admin !	</div>');
+					// echo 'Berhasil Login';
+				} else {
+					redirect('user');
+					// echo 'Berhasil Login';
+					$this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Success Login Mitra !	</div>');
+				}
+			} else{
+				$data['title'] = 'CUPO User Login';
+				$this->load->view('templates/auth_header', $data);
+				$this->load->view('auth/login');
+				$this->load->view('templates/auth_footer');
 			}					
 		}
 	}

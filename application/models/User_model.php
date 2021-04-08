@@ -102,7 +102,8 @@ class User_model extends CI_Model {
             $result = json_decode($res->getBody()->getContents(), true);
             return $result['data'];
         } catch(\GuzzleHttp\Exception\ClientException $e){
-            echo $e->getResponse()->getBody()->getContents();
+            // echo $e->getResponse()->getBody()->getContents();
+            $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Username atau Password salah</div>');
         }
     }
 
