@@ -53,6 +53,30 @@
     </div>
 </li>
 
+<!-- Nav Item - Pages Collapse Menu -->
+<li class="nav-item">
+    <a class="nav-link" href="<?= base_url('produk/getcupKotor'); ?>">
+        <i class="fa fa-cogs"></i>
+        <span>Maintenance</span>
+    </a>
+</li>
+
+<!-- Nav Item - Pages Collapse Menu -->
+<li class="nav-item">
+    <a class="nav-link" href="<?= base_url('produk/dataAdmin'); ?>">
+        <i class="fa fa-truck"></i>
+        <span>Distribusi</span>
+    </a>
+</li>
+
+<!-- Nav Item - Pages Collapse Menu -->
+<li class="nav-item">
+    <a class="nav-link" href="<?= base_url('produk/getcupKotor'); ?>">
+        <i class="fa fa-file"></i>
+        <span>Laporan</span>
+    </a>
+</li>
+
 <!-- Divider -->
 <!-- <hr class="sidebar-divider"> -->
 

@@ -12,7 +12,7 @@ class User_model extends CI_Model {
 
     public function getUser()
     {
-        $response = $this->_user->request('GET', 'users/get',[
+        $response = $this->_user->request('GET', 'api/users/user',[
             'query' => [
                 'X-API-KEY' => 'apikey'
             ]

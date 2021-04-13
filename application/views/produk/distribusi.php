@@ -8,9 +8,6 @@
       <div class="row">
         <div class="table-responsive">
         <?= form_error('produk','<div class="alert alert-danger" role="alert">', '</div>'); ?>
-        <?php if($this->session->userdata('level') == '1'){ ?>
-          <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newRoleModal">Tambah Produk Baru</a>
-        <?php } ?>
           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
               <tr>
@@ -36,27 +33,12 @@
                 </td>
                 <td><?= $r['id_mitra']; ?></td>
                 <td>
-                <a href="<?= base_url('produk/get') . $r['id_produk'] ?>" class="btn btn-info btn-icon-split">
+                <a href="" data-toggle="modal" data-target="#newRoleModal" class="btn btn-info btn-icon-split">
                   <span class="icon text-white-50">
                     <i class="fas fa-info-circle"></i>
                   </span>
-                  <!-- <span class="text">Detail</span> -->
+                  <span class="text">Distrubsi Cup</span>
                 </a>
-                <a href="" class="btn btn-success btn-icon-split">
-                  <span class="icon text-white-50">
-                    <i class="fas fa-check"></i>
-                  </span>
-                  <!-- <span class="text">Edit</span> -->
-                </a>
-                <a href="" class="btn btn-danger btn-icon-split">
-                  <span class="icon text-white-50">
-                    <i class="fas fa-trash"></i>
-                  </span>
-                  <!-- <span class="text">Hapus</span> -->
-                </a>
-                  <!-- <a href="<?= base_url('produk/get') . $r['id_produk'] ?>" class="badge badge-warning">Detail</a>
-                  <a href="" class="badge badge-success">Edit</a>
-                  <a href="" class="badge badge-danger">Hapus</a> -->
                 </td>                      
               </tr>
               <?php $i++; ?>
@@ -76,15 +58,26 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="newRoleModalLabel">Add New Product</h5>
+        <h5 class="modal-title" id="newRoleModalLabel">Distribusi Produk</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="<?= base_url('produk/add'); ?>" method="post">
+      <form action="<?= base_url('produk/distribusi'); ?>" method="post">
         <div class="modal-body">
         <div class="form-group">
-          <input type="text" class="form-control" id="nama_produk" name="nama_produk" placeholder="Tambah nama produk">
+          <input type="hidden" class="form-control" id="id_produk" name="id_produk" value="$r['id_produk']">
+         <? var_dump($r['id_produk']); ?>
+        </div>
+        <div class="form-group">
+        <label for="id_mitra">Pilih Lokasi Mitra</label>
+          <select class="form-control" name="id_mitra">
+            <?php 
+            foreach($mitra as $row){ 
+              echo '<option value="'.$row['id_mitra'].'">'.$row['username'].'</option>';
+            }
+            ?>
+          </select>
         </div>
         </div>
         <div class="modal-footer">
@@ -96,4 +89,3 @@
     </div>
   </div>
 </div>
-
