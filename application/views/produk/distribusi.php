@@ -27,7 +27,7 @@
               <tr>
                 <th scope="row"><?= $no++; ?></th>
                 <td><?= $r['nama_produk']; ?></td>
-                <td><img src="<?= 'https://rest-server-cupo.000webhostapp.com/assets/images/'. $r['qr_code']; ?>" style="width: 100px; height:100px;"></td>
+                <td><img src="<?= 'https://server-cupo.xyz/assets/images/'. $r['qr_code']; ?>" style="width: 100px; height:100px;"></td>
                 <td>
                 <?= $r['status'];?>
                 </td>
@@ -63,18 +63,18 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="<?= base_url('produk/distribusi'); ?>" method="post">
+      <form action="<?= base_url() . 'produk/distribusi'?>" method="post" enctype="multipart/form-data">
         <div class="modal-body">
         <div class="form-group">
-          <input type="hidden" class="form-control" id="id_produk" name="id_produk" value="$r['id_produk']">
+          <input type="hidden" class="form-control" id="id_produk" name="id_produk" value="<?= $r['id_produk']?>">
          <? var_dump($r['id_produk']); ?>
         </div>
         <div class="form-group">
         <label for="id_mitra">Pilih Lokasi Mitra</label>
-          <select class="form-control" name="id_mitra">
+          <select class="form-control" name="id_mitra" id="id_mitra">
             <?php 
             foreach($mitra as $row){ 
-              echo '<option value="'.$row['id_mitra'].'">'.$row['username'].'</option>';
+              echo '<option value="'.$row['id'].'">'.$row['username'].'</option>';
             }
             ?>
           </select>

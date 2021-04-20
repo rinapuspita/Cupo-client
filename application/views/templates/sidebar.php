@@ -21,7 +21,7 @@
 <?php if($this->session->userdata('level') == '1'){ ?>
 <!-- Nav Item - Dashboard -->
 <li class="nav-item active">
-    <a class="nav-link" href="#">
+    <a class="nav-link" href="<?= base_url('admin'); ?>">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span></a>
 </li>
@@ -71,7 +71,7 @@
 
 <!-- Nav Item - Pages Collapse Menu -->
 <li class="nav-item">
-    <a class="nav-link" href="<?= base_url('produk/getcupKotor'); ?>">
+    <a class="nav-link" href="<?= base_url('laporan'); ?>">
         <i class="fa fa-file"></i>
         <span>Laporan</span>
     </a>
@@ -112,7 +112,7 @@
 
 <!-- Nav Item - Pages Collapse Menu -->
 <li class="nav-item">
-    <a class="nav-link" href="<?= base_url('peminjaman/'); ?>" >
+    <a class="nav-link" href="<?= base_url('peminjaman/getMitra'); ?>" >
         <i class="fas fa-fw fa-folder"></i>
         <span>Peminjaman</span>
     </a>
@@ -120,7 +120,7 @@
 
 <!-- Nav Item - Charts -->
 <li class="nav-item">
-    <a class="nav-link" href="<?= base_url('pengembalian/'); ?>">
+    <a class="nav-link" href="<?= base_url('pengembalian/getMitra'); ?>">
         <i class="fas fa-fw fa-chart-area"></i>
         <span>Pengembalian</span></a>
 </li>

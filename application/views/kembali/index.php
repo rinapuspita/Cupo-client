@@ -8,7 +8,7 @@
       <div class="row">
         <div class="table-responsive">
         <?= form_error('kembali','<div class="alert alert-danger" role="alert">', '</div>'); ?>
-
+        <?= $this->session->flashdata('message'); ?>
           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
               <tr>
@@ -32,13 +32,13 @@
                 <td><?= $k['nama_peminjam']?></td>
                 <td><?= $k['nama_produk']?></td>
                 <td><?= $k['nama_mitra']?></td>
-                <td><?= $k['tanggal_kembali']; ?></td>
+                <td><?= date('d F Y', strtotime($k['tanggal_kembali']));?></td>
                 <td><?= $k['terlambat']; ?></td>
                 <td><?= $k['denda']; ?></td>
                 <td>
                 <a href="" class="btn btn-success btn-icon-split">
                   <span class="icon text-white-50">
-                    <i class="fas fa-check"></i>
+                    <i class="fas fa-edit"></i>
                   </span>
                 </a>
                 <a href="" class="btn btn-danger btn-icon-split">

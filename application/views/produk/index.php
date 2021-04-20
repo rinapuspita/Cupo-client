@@ -19,7 +19,9 @@
                 <th scope="col">QR Code</th>
                 <th scope="col">Status</th>
                 <th scope="col">ID Lokasi</th>
-                <th scope="col">Action</th>                      
+                <?php if ($this->session->userdata('level') == '1') { ?>
+                <th>Action</th>
+                <?php } ?>
               </tr>
             </thead>
             <tbody>
@@ -30,21 +32,22 @@
               <tr>
                 <th scope="row"><?= $no++; ?></th>
                 <td><?= $r['nama_produk']; ?></td>
-                <td><img src="<?= 'https://rest-server-cupo.000webhostapp.com/assets/images/'. $r['qr_code']; ?>" style="width: 100px; height:100px;"></td>
+                <td><img src="<?= 'https://server-cupo.xyz/assets/images/'. $r['qr_code']; ?>" style="width: 100px; height:100px;"></td>
                 <td>
                 <?= $r['status'];?>
                 </td>
                 <td><?= $r['id_mitra']; ?></td>
+                <?php if ($this->session->userdata('level') == '1') { ?>
                 <td>
-                <a href="<?= base_url('produk/get') . $r['id_produk'] ?>" class="btn btn-info btn-icon-split">
+                <a href="<?= base_url('produk/qr_pdf')?>" class="btn btn-info btn-icon-split">
                   <span class="icon text-white-50">
-                    <i class="fas fa-info-circle"></i>
+                    <i class="fas fa-print"></i>
                   </span>
                   <!-- <span class="text">Detail</span> -->
                 </a>
                 <a href="" class="btn btn-success btn-icon-split">
                   <span class="icon text-white-50">
-                    <i class="fas fa-check"></i>
+                    <i class="fas fa-edit"></i>
                   </span>
                   <!-- <span class="text">Edit</span> -->
                 </a>
@@ -54,10 +57,8 @@
                   </span>
                   <!-- <span class="text">Hapus</span> -->
                 </a>
-                  <!-- <a href="<?= base_url('produk/get') . $r['id_produk'] ?>" class="badge badge-warning">Detail</a>
-                  <a href="" class="badge badge-success">Edit</a>
-                  <a href="" class="badge badge-danger">Hapus</a> -->
                 </td>                      
+                <?php } ?>
               </tr>
               <?php $i++; ?>
               <?php endforeach; ?>

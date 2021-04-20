@@ -19,4 +19,25 @@ class Pengembalian extends CI_Controller {
 		$this->load->view('kembali/index');
 		$this->load->view('templates/footer');
 	}
+
+	public function getMitra() 
+	{
+		$id = $this->session->userdata('user_id');
+		$data['title'] = 'Data Pengembalian | Cupo';
+        $data['kembali'] = $this->pengembalian_model->getKembaliMitra($id);
+		if($data['kembali']>0){
+			$this->load->view('templates/header', $data);
+			$this->load->view('templates/sidebar', $data);
+			$this->load->view('templates/topbar', $data);
+			$this->load->view('kembali/index');
+			$this->load->view('templates/footer');	
+		} else{
+			$this->load->view('templates/header', $data);
+		    $this->load->view('templates/sidebar', $data);
+		    $this->load->view('templates/topbar', $data);
+		    $this->load->view('produk/404');
+		    $this->load->view('templates/footer');
+		}
+		
+	}
 }

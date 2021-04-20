@@ -27,7 +27,7 @@
               <tr>
                 <th scope="row"><?= $no++; ?></th>
                 <td><?= $r['nama_produk']; ?></td>
-                <td><img src="<?= 'https://rest-server-cupo.000webhostapp.com/assets/images/'. $r['qr_code']; ?>" style="width: 100px; height:100px;"></td>
+                <td><img src="<?= 'https://server-cupo.xyz/assets/images/'. $r['qr_code']; ?>" style="width: 100px; height:100px;"></td>
                 <td>
                 <?= $r['status'];?>
                 </td>

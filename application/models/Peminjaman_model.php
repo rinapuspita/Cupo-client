@@ -6,7 +6,7 @@ class Peminjaman_model extends CI_Model {
     private $_pinjam;
     public function __construct(){
         $this->_pinjam = new Client([
-            'base_uri' => 'https://rest-server-cupo.000webhostapp.com/'
+            'base_uri' => 'https://server-cupo.xyz/'
         ]);
     }
 
@@ -38,6 +38,24 @@ class Peminjaman_model extends CI_Model {
             return $result['data'][0];
         } catch(\GuzzleHttp\Exception\ClientException $e) {
             echo $e->getResponse()->getBody()->getContents();
+        }
+        
+    }
+
+    public function getMitraPinjam($id)
+    {
+        try{
+            $response = $this->_pinjam->request('GET', 'api/peminjaman/mPinjam',[
+                'query' => [
+                    'X-API-KEY' => 'apikey',
+                    'id_mitra' => $id
+                ]
+            ]);
+            $result = json_decode($response->getBody()->getContents(), true);
+            return $result['data'];
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            // echo $e->getResponse()->getBody()->getContents();
+            $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Data Peminjaman Kosong</div>');
         }
         
     }

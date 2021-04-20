@@ -6,7 +6,7 @@ class User_model extends CI_Model {
     private $_user;
     public function __construct(){
         $this->_user = new Client([ // guzzle not found in this line code
-            'base_uri' => 'https://rest-server-cupo.000webhostapp.com/'
+            'base_uri' => 'https://server-cupo.xyz/'
         ]);
     }
 

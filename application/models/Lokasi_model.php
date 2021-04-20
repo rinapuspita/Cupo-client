@@ -6,7 +6,7 @@ class Lokasi_model extends CI_Model {
     private $_lokasi;
     public function __construct(){
         $this->_lokasi = new Client([
-            'base_uri' => 'https://rest-server-cupo.000webhostapp.com/'
+            'base_uri' => 'https://server-cupo.xyz/'
         ]);
     }
 

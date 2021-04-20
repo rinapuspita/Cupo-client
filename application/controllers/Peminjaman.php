@@ -19,4 +19,24 @@ class Peminjaman extends CI_Controller {
 		$this->load->view('pinjam/index');
 		$this->load->view('templates/footer');
 	}
+
+	public function getMitra() 
+	{
+		$id = $this->session->userdata('user_id');
+		$data['title'] = 'Data Peminjaman | Cupo';
+        $data['pinjam'] = $this->peminjaman_model->getMitraPinjam($id);
+		if($data['pinjam']>0){
+			$this->load->view('templates/header', $data);
+			$this->load->view('templates/sidebar', $data);
+			$this->load->view('templates/topbar', $data);
+			$this->load->view('pinjam/index');
+			$this->load->view('templates/footer');
+		} else{
+			$this->load->view('templates/header', $data);
+		    $this->load->view('templates/sidebar', $data);
+		    $this->load->view('templates/topbar', $data);
+		    $this->load->view('produk/404');
+		    $this->load->view('templates/footer');    
+		}
+	}
 }

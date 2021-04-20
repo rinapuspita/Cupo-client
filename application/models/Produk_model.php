@@ -6,17 +6,16 @@ class Produk_model extends CI_Model {
     private $_produk;
     public function __construct(){
         $this->_produk = new Client([
-            'base_uri' => 'https://rest-server-cupo.000webhostapp.com/'
+            'base_uri' => 'https://server-cupo.xyz/'
         ]);
     }
 
-    public function getProduk($token)
+    public function getProduk()
     {
         try{
             $response = $this->_produk->request('GET', 'api/produk', [
                 'headers' => [
-                    'X-API-KEY' => 'apikey',
-                  'authorization' => "bearerHeader " . $token
+                    'X-API-KEY' => 'apikey'
                 ]
             ]);
             $result = json_decode($response->getBody()->getContents(), true);
@@ -78,13 +77,14 @@ class Produk_model extends CI_Model {
     public function updateLokasi($lokasi, $id)
     {
         try{
-            $data = [
-                'id_mitra' => $lokasi,
-                'id_produk' => $id,
-                "X-API-KEY" => 'apikey'
-            ];
-            $response = $this->_produk->request('PUT', 'api/produk/changeLokasi', [
-                'form_params' => $data
+            $response = $this->_produk->request('PUT', 'api/produk/changeLokasi/', [
+                'headers' => [
+                    'X-API-KEY' => 'apikey',
+                ],
+                'form_params' => [
+                    'id_mitra' => $lokasi,
+                    'id_produk' => $id,
+                ]
             ]);
             $result = json_decode($response->getBody()->getContents(), true);
             return $result;

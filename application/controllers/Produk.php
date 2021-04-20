@@ -12,9 +12,8 @@ class Produk extends CI_Controller {
 
 	public function index() 
 	{
-		$token = $this->session->userdata('token');
 		$data['title'] = 'Data Produk | Cupo';
-        $data['produk'] = $this->produk_model->getProduk($token);
+        $data['produk'] = $this->produk_model->getProduk();
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebar', $data);
 		$this->load->view('templates/topbar', $data);
@@ -24,7 +23,7 @@ class Produk extends CI_Controller {
 
     public function dataMitra()
     {
-        $id = 2;
+        $id = $this->session->userdata('user_id');
         $data['title'] = 'Data Produk | Cupo';
         $data['produk'] = $this->produk_model->getM_Produk($id);
         if($data['produk']>0){
@@ -87,7 +86,7 @@ class Produk extends CI_Controller {
         $data['title'] = 'Data Produk | Cupo';
         $data['produk'] = $this->produk_model->getCuci($id);
         if($data['produk']){
-            redirect('produk/dataAdmin', 'refresh');
+            redirect('produk/getcupKotor', 'refresh');
         } else{
             echo 'gagal';
         }
@@ -101,7 +100,7 @@ class Produk extends CI_Controller {
         $lokasi = $this->input->post('id_mitra');
         $data['produk'] = $this->produk_model->updateLokasi($lokasi, $id);
         if($data['produk']){
-            redirect('produk/getcupKotor', 'refresh');
+            redirect('produk/dataAdmin', 'refresh');
         } else{
             echo 'gagal';
         }
@@ -124,5 +123,13 @@ class Produk extends CI_Controller {
           }
     }
 
-	
+	public function qr_pdf()
+	{
+		$this->load->library('pdf');
+		$data['produk'] = $this->produk_model->getProduk();
+		$this->load->library('pdf');
+		$this->pdf->setPaper('A4', 'potrait');
+		$this->pdf->filename = "print_qr.pdf";
+		$this->pdf->load_view('produk/print', $data);
+	}
 }	
