@@ -28,7 +28,7 @@ class Peminjaman_model extends CI_Model {
     public function getPinjamByID($id)
     {
         try{
-            $response = $this->_pinjam->request('GET', 'api/peminjaman',[
+            $response = $this->_pinjam->request('GET', 'peminjaman/get',[
                 'query' => [
                     'X-API-KEY' => 'apikey',
                     'id_pinjam' => $id
@@ -40,6 +40,21 @@ class Peminjaman_model extends CI_Model {
             echo $e->getResponse()->getBody()->getContents();
         }
         
+    }
+
+    public function hitungPinjam()
+    {
+        try{
+            $response = $this->_pinjam->request('GET', 'api/peminjaman/getRows', [
+                'headers' => [
+                    'X-API-KEY' => 'apikey'
+                ]
+            ]);
+            $result = json_decode($response->getBody()->getContents(), true);
+            return $result['data'];
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            echo $e->getResponse()->getBody()->getContents();
+        }
     }
 
     public function getMitraPinjam($id)
@@ -58,6 +73,28 @@ class Peminjaman_model extends CI_Model {
             $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Data Peminjaman Kosong</div>');
         }
         
+    }
+
+    public function update()
+    {
+        try {
+            $id = $this->input->post('id_pinjam');
+            $tanggal_pinjam = $this->input->post('tanggal_pinjam', true);
+            $tanggal_haruskembali = $this->input->post('tanggal_haruskembali', true);
+            $res = $this->_pinjam->request('PUT', 'api/peminjaman/', [
+                'headers' => [
+                    'X-API-KEY' => 'apikey',
+                ],
+                'form_params' => [
+                    'id_pinjam' => $id,
+                    'tanggal_pinjam' => $tanggal_pinjam,
+                    'tanggal_haruskembali' => $tanggal_haruskembali
+                ]
+            ]);
+            return json_decode($res->getBody()->getContents(), true);
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+            echo $e->getResponse()->getBody()->getContents();
+        }
     }
 
     public function delete($id){

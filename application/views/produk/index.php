@@ -45,13 +45,13 @@
                   </span>
                   <!-- <span class="text">Detail</span> -->
                 </a>
-                <a href="" class="btn btn-success btn-icon-split">
+                <a href="<?= base_url() . 'produk/edit/' . $r['id_produk'] ?>" class="btn btn-success btn-icon-split">
                   <span class="icon text-white-50">
                     <i class="fas fa-edit"></i>
                   </span>
                   <!-- <span class="text">Edit</span> -->
                 </a>
-                <a href="" class="btn btn-danger btn-icon-split">
+                <a href="<?= base_url() . 'produk/hapus/' . $r['id_produk'] ?>" onclick="return confirm('Hapus data ini?')" class="btn btn-danger btn-icon-split">
                   <span class="icon text-white-50">
                     <i class="fas fa-trash"></i>
                   </span>
@@ -98,3 +98,35 @@
   </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="editRoleModal" tabindex="-1" role="dialog" aria-labelledby="editRoleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editRoleModalLabel">Edit Product</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <?php foreach ($produk as $r) : 
+                ?>
+      <form action="<?= base_url(). 'produk/edit/'?>" method="post">
+        <div class="modal-body">
+        <div class="form-group">
+          <input type="hidden" class="form-control" id="id_produk" name="id_produk" value="<?= $r['id_produk']?>">
+         <? var_dump($r['id_produk']); ?>
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" id="nama_produk" name="nama_produk" placeholder="Tambah nama produk" value="<?= $r['nama_produk'] ?>">
+        </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
+
+      </form>
+      <?php endforeach; ?>
+    </div>
+  </div>
+</div>

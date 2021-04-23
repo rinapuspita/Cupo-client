@@ -19,6 +19,7 @@
                 <th scope="col">Tanggal Pengembalian</th>
                 <th scope="col">Terlambat</th>  
                 <th scope="col">Denda</th>     
+                <th scope="col">Catatan</th>     
                 <th scope="col">Aksi</th>                      
               </tr>
             </thead>
@@ -35,16 +36,19 @@
                 <td><?= date('d F Y', strtotime($k['tanggal_kembali']));?></td>
                 <td><?= $k['terlambat']; ?></td>
                 <td><?= $k['denda']; ?></td>
+                <td><?= $k['status']; ?></td>
                 <td>
-                <a href="" class="btn btn-success btn-icon-split">
+                <a href="<?= base_url() . 'pengembalian/editMitra/' . $k['id_kembali'] ?>" class="btn btn-success btn-icon-split">
                   <span class="icon text-white-50">
                     <i class="fas fa-edit"></i>
                   </span>
+                  <!-- <span class="text">Edit</span> -->
                 </a>
-                <a href="" class="btn btn-danger btn-icon-split">
+                <a href="<?= base_url() . 'pengembalian/hapus/' . $k['id_kembali'] ?>" onclick="return confirm('Hapus data ini?')" class="btn btn-danger btn-icon-split">
                   <span class="icon text-white-50">
                     <i class="fas fa-trash"></i>
                   </span>
+                  <!-- <span class="text">Hapus</span> -->
                 </a>
                 </td>                      
               </tr>

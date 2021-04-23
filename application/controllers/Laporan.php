@@ -6,6 +6,11 @@ class Laporan extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->model('peminjaman_model', 'pm');
+		$this->load->model('pengembalian_model', 'pem');
+		$this->load->model('produk_model', 'prm');
+		$this->load->model('user_model', 'um');
+		$this->load->model('laporan_model', 'lm');
 	}
 
 	public function index() 
@@ -16,6 +21,20 @@ class Laporan extends CI_Controller {
 		$this->load->view('templates/topbar', $data);
 		$this->load->view('admin/laporan');
 		$this->load->view('templates/footer');
+	}
+
+	public function lap_produk()
+	{
+		$data['laporan'] = $this->lm->laporanProduk();
+		$this->load->library('pdf');
+		$this->pdf->setPaper('A4', 'potrait');
+		$this->pdf->filename = "laporan-dosen.pdf";
+		$this->pdf->load_view('siakad/laporandosen', $data);
+	}
+
+	public function lap_user()
+	{
+		# code...
 	}
 
 }

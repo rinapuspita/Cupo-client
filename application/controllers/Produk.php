@@ -123,6 +123,40 @@ class Produk extends CI_Controller {
           }
     }
 
+    public function edit($id)
+    {
+        $data['title'] = 'Data Produk | Cupo';
+        $data['produk'] = $this->produk_model->getProdukByID($id);
+        $this->form_validation->set_rules('nama_produk', 'Nama Produk', 'required');
+        if ($this->form_validation->run() == true) {
+            if($this->produk_model->editProduk()>0){
+                // echo "yey berhasil";
+                redirect('produk', 'refresh');
+            } else{
+                echo "yah gagal";
+            }
+          } else {
+            $this->load->view('templates/header', $data);
+		    $this->load->view('templates/sidebar', $data);
+		    $this->load->view('templates/topbar', $data);
+		    $this->load->view('produk/edit', $data);
+		    $this->load->view('templates/footer'); 
+          }
+    }
+
+    public function hapus($id)
+    {
+        $hapus = $this->produk_model->delete($id);
+        if($hapus>0){
+            echo 'yey berhasil';
+            $this->session->set_flashdata('flash', 'Dihapus');
+            redirect('produk');
+        }  else{
+            echo 'gagal cuy';
+            redirect('produk');
+        }
+    }
+
 	public function qr_pdf()
 	{
 		$this->load->library('pdf');

@@ -34,22 +34,17 @@
                 <td><?= $r['password']; ?></td>
                 <td><?= $r['limit_pinjam']; ?></td>
                 <td>
-                <a href="<?= base_url('admin/get') . $r['id_cust'] ?>" class="btn btn-info btn-icon-split">
+                <a href="<?= base_url() . 'admin/editCust/' . $r['id_cust'] ?>" class="btn btn-success btn-icon-split">
                   <span class="icon text-white-50">
-                    <i class="fas fa-info-circle"></i>
+                    <i class="fas fa-edit"></i>
                   </span>
+                  <!-- <span class="text">Edit</span> -->
                 </a>
-                <a href="" class="btn btn-success btn-icon-split">
-                  <span class="icon text-white-50">
-                    <i class="fas fa-check"></i>
-                  </span>
-                  
-                </a>
-                <a href="" class="btn btn-danger btn-icon-split">
+                <a href="<?= base_url() . 'admin/hapusCust/' . $r['id_cust'] ?>" onclick="return confirm('Hapus data ini?')" class="btn btn-danger btn-icon-split">
                   <span class="icon text-white-50">
                     <i class="fas fa-trash"></i>
                   </span>
-                  
+                  <!-- <span class="text">Hapus</span> -->
                 </a>
                  </td>                      
               </tr>
@@ -78,16 +73,16 @@
       <form action="<?= base_url('admin/addCust'); ?>" method="post">
         <div class="modal-body">
         <div class="form-group">
-          <input type="text" class="form-control" id="fullname" name="Fullname" placeholder="Tambah nama lengkap customer">
+          <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Tambah nama lengkap customer">
         </div>
         <div class="form-group">
-          <input type="text" class="form-control" id="username" name="Username" placeholder="Tambah nama customer">
+          <input type="text" class="form-control" id="username" name="username" placeholder="Username customer">
         </div>
         <div class="form-group">
-          <input type="text" class="form-control" id="email" name="Email" placeholder="Email customer">
+          <input type="text" class="form-control" id="email" name="email" placeholder="Email customer">
         </div>
         <div class="form-group">
-          <input type="password" class="form-control" id="password" name="Password" placeholder="Password customer">
+          <input type="password" class="form-control" id="password" name="password" placeholder="Password customer">
         </div>
         </div>
         <div class="modal-footer">

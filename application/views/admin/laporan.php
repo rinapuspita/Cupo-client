@@ -21,10 +21,8 @@
                 <th scope="row">1</th>
                 <td>Laporan Data Barang</td>
                 <td>
-                <a href="#" class="btn btn-info btn-icon-split">
-                  <span class="icon text-white-50">
-                    <i class="fas fa-print"></i>
-                  </span>
+                <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+            class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                 </a>
                  </td>                      
               </tr>
@@ -32,9 +30,8 @@
                 <th scope="row">2</th>
                 <td>Laporan Data Mitra</td>
                 <td>
-                <a href="#" class="btn btn-info btn-icon-split">
-                  <span class="icon text-white-50">
-                    <i class="fas fa-print"></i>
+                <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+            class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                   </span>
                 </a>
                  </td>                      

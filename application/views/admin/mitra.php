@@ -34,22 +34,17 @@
                 <td><?= $r['password']; ?></td>
                 <td><?= $r['level']; ?></td>
                 <td>
-                <a href="<?= base_url('admin/get') . $r['id'] ?>" class="btn btn-info btn-icon-split">
+                <a href="<?= base_url() . 'admin/editMitra/' . $r['id'] ?>" class="btn btn-success btn-icon-split">
                   <span class="icon text-white-50">
-                    <i class="fas fa-info-circle"></i>
+                    <i class="fas fa-edit"></i>
                   </span>
+                  <!-- <span class="text">Edit</span> -->
                 </a>
-                <a href="" class="btn btn-success btn-icon-split">
-                  <span class="icon text-white-50">
-                    <i class="fas fa-check"></i>
-                  </span>
-                  
-                </a>
-                <a href="" class="btn btn-danger btn-icon-split">
+                <a href="<?= base_url() . 'admin/hapusMitra/' . $r['id'] ?>" onclick="return confirm('Hapus data ini?')" class="btn btn-danger btn-icon-split">
                   <span class="icon text-white-50">
                     <i class="fas fa-trash"></i>
                   </span>
-                  
+                  <!-- <span class="text">Hapus</span> -->
                 </a>
                  </td>                      
               </tr>

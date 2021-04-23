@@ -25,6 +25,21 @@ class Produk_model extends CI_Model {
         }
     }
 
+    public function hitungProduk()
+    {
+        try{
+            $response = $this->_produk->request('GET', 'api/produk/getRows', [
+                'headers' => [
+                    'X-API-KEY' => 'apikey'
+                ]
+            ]);
+            $result = json_decode($response->getBody()->getContents(), true);
+            return $result['data'];
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            echo $e->getResponse()->getBody()->getContents();
+        }
+    }
+
     public function getProdukKotor()
     {
         try{
@@ -131,20 +146,33 @@ class Produk_model extends CI_Model {
     public function delete($id)
     {
         try {
-            $res = $this->_produk->request('DELETE', 'api/produk/' . $id . ')');
+            $res = $this->_produk->request('DELETE', 'api/produk', [
+                'headers' => [
+                    'X-API-KEY' => 'apikey',
+                ],
+                'form_params' => [
+                    'id_produk' => $id,
+                ]
+            ]);
             return json_decode($res->getBody()->getContents(), true);
           } catch (\GuzzleHttp\Exception\ClientException $e) {
             echo $e->getResponse()->getBody()->getContents();
           }
     }
 
-    public function edit($id)
+    public function editProduk()
     {
         try {
-            $res = $this->_client->request('PUT', 'api/produk' . $id, [
-              'headers' => [
-                'X-API-KEY' => 'apikey'
-              ]
+            $id = $this->input->post('id_produk');
+            $nama = $this->input->post('nama_produk');
+            $res = $this->_produk->request('PUT', 'api/produk/edit', [
+                'headers' => [
+                    'X-API-KEY' => 'apikey',
+                ],
+                'form_params' => [
+                    'id_produk' => $id,
+                    'nama_produk' => $nama,
+                ]
             ]);
             return json_decode($res->getBody()->getContents(), true);
           } catch (\GuzzleHttp\Exception\ClientException $e) {

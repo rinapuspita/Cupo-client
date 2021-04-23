@@ -34,15 +34,17 @@
                 <td><?= date('d F Y', strtotime($p['tanggal_haruskembali']));?></td>
                 <td><?= $p['status']; ?></td>
                 <td>
-                <a href="" class="btn btn-success btn-icon-split">
+                <a href="<?= base_url() . 'peminjaman/editMitra/' . $p['id_pinjam'] ?>" class="btn btn-success btn-icon-split">
                   <span class="icon text-white-50">
                     <i class="fas fa-edit"></i>
                   </span>
+                  <!-- <span class="text">Edit</span> -->
                 </a>
-                <a href="" class="btn btn-danger btn-icon-split">
+                <a href="<?= base_url() . 'peminjaman/hapus/' . $p['id_pinjam'] ?>" onclick="return confirm('Hapus data ini?')" class="btn btn-danger btn-icon-split">
                   <span class="icon text-white-50">
                     <i class="fas fa-trash"></i>
                   </span>
+                  <!-- <span class="text">Hapus</span> -->
                 </a>
                 </td>                      
               </tr>

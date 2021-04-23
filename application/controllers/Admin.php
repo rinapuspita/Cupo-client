@@ -7,14 +7,20 @@ class Admin extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('user_model');
+		$this->load->model('produk_model');
+		$this->load->model('peminjaman_model');
+		$this->load->model('pengembalian_model');
 	}
 
 	public function index() 
 	{
 		$token = $this->session->userdata('token');
 		$data['user'] = $this->user_model->getLogin($token);
+		$data['produk'] = $this->produk_model->hitungProduk();
+		$data['cust'] = $this->user_model->hitungCust();
+		$data['pinjam'] = $this->peminjaman_model->hitungPinjam();
+		$data['kembali'] = $this->pengembalian_model->hitungKembali();
 		$data['title'] = 'Dashboard';
-
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebar', $data);
 		$this->load->view('templates/topbar', $data);
@@ -51,7 +57,7 @@ class Admin extends CI_Controller {
         $this->form_validation->set_rules('username', 'username', 'trim|required');
         $this->form_validation->set_rules('email', 'email', 'trim|required|valid_email|max_length[60]');
         $this->form_validation->set_rules('password', 'password', 'trim|required|max_length[25]');
-        if ($this->form_validation->run()==true) {
+        if ($this->form_validation->run() == true) {
             if($this->user_model->userRegister()>0){
                 echo "yey berhasil";
                 redirect('admin/dataMitra', 'refresh');
@@ -84,5 +90,80 @@ class Admin extends CI_Controller {
           }
     }
 
+	public function editMitra($id)
+	{
+		$data['title'] = 'Data Mitra | Cupo';
+		$data['user'] = $this->user_model->getUserByID($id);
+        $this->form_validation->set_rules('fullname', 'fullname', 'trim|required|max_length[50]');
+        $this->form_validation->set_rules('username', 'username', 'trim|required');
+        $this->form_validation->set_rules('email', 'email', 'trim|required|valid_email|max_length[60]');
+        if ($this->form_validation->run() == true) {
+            if($this->user_model->editMitra()>0){
+                echo "yey berhasil";
+                redirect('admin/dataMitra', 'refresh');
+            } else{
+                echo "yah gagal";
+            }
+        } else {
+			// echo "kliru rek hara";
+			$this->load->view('templates/header', $data);
+			$this->load->view('templates/sidebar', $data);
+			$this->load->view('templates/topbar', $data);
+			$this->load->view('admin/editMitra', $data);
+			$this->load->view('templates/footer');
+            // redirect('admin/dataMitra', 'refresh');
+        }
+	}
+
+	public function editCust($id)
+	{
+		$data['title'] = 'Data Customer | Cupo';
+		$data['user'] = $this->user_model->getCustByID($id);
+        $this->form_validation->set_rules('fullname', 'fullname', 'trim|required|max_length[50]');
+        $this->form_validation->set_rules('username', 'username', 'trim|required');
+        $this->form_validation->set_rules('email', 'email', 'trim|required|valid_email|max_length[60]');
+        if ($this->form_validation->run() == true) {
+            if($this->user_model->editCust()>0){
+                echo "yey berhasil";
+                redirect('admin/dataCust', 'refresh');
+            } else{
+                echo "yah gagal";
+            }
+        } else {
+			// echo "kliru rek hara";
+			$this->load->view('templates/header', $data);
+			$this->load->view('templates/sidebar', $data);
+			$this->load->view('templates/topbar', $data);
+			$this->load->view('admin/editCust', $data);
+			$this->load->view('templates/footer');
+            // redirect('admin/dataMitra', 'refresh');
+        }
+	}
+
+	public function hapusMitra($id)
+	{
+		$hapus = $this->user_model->hapusMitra($id);
+        if($hapus>0){
+            echo 'yey berhasil';
+            $this->session->set_flashdata('flash', 'Dihapus');
+            redirect('admin/dataMitra', 'refresh');
+        }  else{
+            echo 'gagal cuy';
+			redirect('admin/dataMitra', 'refresh');
+        }
+	}
+
+	public function hapusCust($id)
+	{
+		$hapus = $this->user_model->hapusCust($id);
+        if($hapus>0){
+            echo 'yey berhasil';
+            $this->session->set_flashdata('flash', 'Dihapus');
+            redirect('admin/dataCust', 'refresh');
+        }  else{
+            echo 'gagal cuy';
+			redirect('admin/dataCust', 'refresh');
+        }
+	}
 	
 }	
