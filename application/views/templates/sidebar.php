@@ -71,6 +71,14 @@
 
 <!-- Nav Item - Pages Collapse Menu -->
 <li class="nav-item">
+    <a class="nav-link" href="<?= base_url('lokasi'); ?>">
+        <i class="fa fa-map-marker"></i>
+        <span>Lokasi</span>
+    </a>
+</li>
+
+<!-- Nav Item - Pages Collapse Menu -->
+<li class="nav-item">
     <a class="nav-link" href="<?= base_url('laporan'); ?>">
         <i class="fa fa-file"></i>
         <span>Laporan</span>

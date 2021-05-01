@@ -10,10 +10,19 @@ class User extends CI_Controller {
 	}
 	public function index() 
 	{
-		$token = $this->session->userdata('token');
 		$data['title'] = 'User Profile';
-		$data['user'] = $this->user_model->getLogin($token);
+		// $data['user'] = $this->user_model->getLogin();
 		
+		// $this->load->view('templates/header', $data);
+		// $this->load->view('templates/sidebar', $data);
+		// $this->load->view('templates/topbar', $data);
+		// $this->load->view('user/index', $data);
+		// $this->load->view('templates/footer');
+		$id = $this->session->userdata('user_id');
+		$data['title'] = 'User Profile';
+		// $data['user'] = $this->user_model->getLogin();
+		$data['user'] = $this->user_model->getUserByID($id);
+		$this->session->set_userdata('name',  $data['user']["fullname"]);
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebar', $data);
 		$this->load->view('templates/topbar', $data);

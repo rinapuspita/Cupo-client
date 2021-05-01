@@ -39,7 +39,7 @@
                 <td><?= $r['id_mitra']; ?></td>
                 <?php if ($this->session->userdata('level') == '1') { ?>
                 <td>
-                <a href="<?= base_url('produk/qr_pdf')?>" class="btn btn-info btn-icon-split">
+                <a href="<?= base_url(). 'produk/qr_pdf/' . $r['id_produk'] ?>" target="_blank" class="btn btn-info btn-icon-split">
                   <span class="icon text-white-50">
                     <i class="fas fa-print"></i>
                   </span>

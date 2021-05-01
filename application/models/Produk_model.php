@@ -124,6 +124,22 @@ class Produk_model extends CI_Model {
         }
     }
 
+    public function getProdukID($id)
+    {
+        try{
+            $response = $this->_produk->request('GET', 'api/produk',[
+                'query' => [
+                    'X-API-KEY' => 'apikey',
+                    'id_produk' => $id
+                ]
+            ]);
+            $result = json_decode($response->getBody()->getContents(), true);
+            return $result['data'];
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            echo $e->getResponse()->getBody()->getContents();
+        }
+    }
+
     public function addProduk()
     {
         try{

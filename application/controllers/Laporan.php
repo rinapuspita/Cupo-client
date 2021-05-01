@@ -25,16 +25,53 @@ class Laporan extends CI_Controller {
 
 	public function lap_produk()
 	{
-		$data['laporan'] = $this->lm->laporanProduk();
+
+		$this->load->library('pdf');
+        $data['produk'] = $this->prm->getProduk();
 		$this->load->library('pdf');
 		$this->pdf->setPaper('A4', 'potrait');
-		$this->pdf->filename = "laporan-dosen.pdf";
-		$this->pdf->load_view('siakad/laporandosen', $data);
+		$this->pdf->filename = "laporan_produk.pdf";
+		$this->pdf->load_view('produk/laporan', $data);
 	}
 
 	public function lap_user()
 	{
-		# code...
+		$this->load->library('pdf');
+        $data['user'] = $this->um->getUser();
+		$this->load->library('pdf');
+		$this->pdf->setPaper('A4', 'potrait');
+		$this->pdf->filename = "laporan_mitra.pdf";
+		$this->pdf->load_view('admin/laporanMitra', $data);
+	}
+
+	public function lap_cust()
+	{
+		$this->load->library('pdf');
+        $data['user'] = $this->um->getCust();
+		$this->load->library('pdf');
+		$this->pdf->setPaper('A4', 'potrait');
+		$this->pdf->filename = "laporan_cust.pdf";
+		$this->pdf->load_view('admin/laporanCust', $data);
+	}
+
+	public function lap_pinjam()
+	{
+		$this->load->library('pdf');
+        $data['pinjam'] = $this->pm->getPinjam();
+		$this->load->library('pdf');
+		$this->pdf->setPaper('A4', 'potrait');
+		$this->pdf->filename = "laporan_pinjam.pdf";
+		$this->pdf->load_view('pinjam/laporan', $data);
+	}
+
+	public function lap_kembali()
+	{
+		$this->load->library('pdf');
+        $data['kembali'] = $this->pem->getKembali();
+		$this->load->library('pdf');
+		$this->pdf->setPaper('A4', 'potrait');
+		$this->pdf->filename = "laporan_kembali.pdf";
+		$this->pdf->load_view('kembali/laporan', $data);
 	}
 
 }

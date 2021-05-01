@@ -2,7 +2,7 @@
 <div class="container-fluid">
 
   <!-- Page Heading -->
-  <h1 class="h3 mb-4 text-gray-800">Edit Product</h1>     
+  <h1 class="h3 mb-4 text-gray-800">Edit Data Mitrat</h1>     
   <div class="row">
     <div class="col-lg-8">
       <?= form_open('admin/editMitra/'.$user['id']);?>

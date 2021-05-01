@@ -157,10 +157,11 @@ class Produk extends CI_Controller {
         }
     }
 
-	public function qr_pdf()
+	public function qr_pdf($id)
 	{
 		$this->load->library('pdf');
-		$data['produk'] = $this->produk_model->getProduk();
+        $data['produk'] = $this->produk_model->getProdukID($id);
+		// $data['produk'] = $this->produk_model->getProduk();
 		$this->load->library('pdf');
 		$this->pdf->setPaper('A4', 'potrait');
 		$this->pdf->filename = "print_qr.pdf";

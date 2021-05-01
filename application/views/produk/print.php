@@ -38,20 +38,18 @@
 </head>
 <body>
 	<div id="outtable">
-		<h2 align="center">QR CODE</h2>
 		<table>
-			<thead>
-				<tr>
-					<th class="short">No</th>
-					<th class="normal">Qr Code</th>
-				</tr>
-			</thead>
 			<tbody>
 				<?php $no=1; ?>
-				<?php foreach($produk as $r): ?>
+				<?php foreach($produk as $r):
+					$path = 'downloads/';
+					$img = 'qr' . $no++ . '.png';
+					file_put_contents($path . $img, base64_decode($r['qr_code'])) ?>
 					<tr>
-						<td> <?php echo $no; ?> </td>
-						<td> <img src="<?= 'https://server-cupo.xyz/assets/images/'. $r['qr_code'].'.png'; ?>" style="width: 100px; height:100px;"> </td>
+						<td> <img src="<?= 'https://server-cupo.xyz/assets/images/'. $r['qr_code']; ?>" style="width: 100px; height:100px;"> </td>
+					</tr>
+					<tr>
+						<td> <?= $r['nama_produk'] ?></td>
 					</tr>
 				<?php $no++; ?>
 				<?php endforeach; ?>

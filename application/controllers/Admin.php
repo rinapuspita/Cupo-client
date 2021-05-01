@@ -90,6 +90,84 @@ class Admin extends CI_Controller {
           }
     }
 
+	public function dataAdmin()
+	{
+		$id = $this->session->userdata('user_id');
+		$data['title'] = 'User Profile';
+		// $data['user'] = $this->user_model->getLogin();
+		$data['user'] = $this->user_model->getUserByID($id);
+		$this->session->set_userdata('name',  $data['user']["fullname"]);
+		$this->load->view('templates/header', $data);
+		$this->load->view('templates/sidebar', $data);
+		$this->load->view('templates/topbar', $data);
+		$this->load->view('user/index', $data);
+		$this->load->view('templates/footer');
+	}
+
+	public function editAdmin($id)
+	{
+		$data['title'] = 'Edit Data User | Cupo';
+		$data['user'] = $this->user_model->getUserByID($id);
+        $this->form_validation->set_rules('fullname', 'fullname', 'trim|required|max_length[50]');
+        $this->form_validation->set_rules('username', 'username', 'trim|required');
+        $this->form_validation->set_rules('email', 'email', 'trim|required|valid_email|max_length[60]');
+
+        if ($this->form_validation->run() == true) {
+            if($this->user_model->editMitra()>0){
+                echo "yey berhasil";
+                redirect('admin/dataAdmin', 'refresh');
+            } else{
+                echo "yah gagal";
+            }
+        } else {
+			// echo "kliru rek hara";
+			$this->load->view('templates/header', $data);
+			$this->load->view('templates/sidebar', $data);
+			$this->load->view('templates/topbar', $data);
+			$this->load->view('user/edit', $data);
+			$this->load->view('templates/footer');
+            // redirect('admin/dataMitra', 'refresh');
+        }
+	}
+
+	public function editPassword($id)
+	{
+		$data['title'] = 'Edit Password | Cupo';
+		$data['user'] = $this->user_model->getUserByID($id);
+		$this->form_validation->set_rules('password', 'Password Lama', 'trim|required'|'callback_cekPwLama');
+    	$this->form_validation->set_rules('passwordBaru', 'Password Baru', 'trim|required');
+    	$this->form_validation->set_rules('passwordConf', 'Konfirmasi Password', 'trim|required|matches[passwordBaru]');
+		if ($this->form_validation->run() == true) {
+            if($this->user_model->editMitra()>0){
+                echo "yey berhasil";
+                redirect('admin/dataAdmin', 'refresh');
+            } else{
+                echo "yah gagal";
+            }
+        } else {
+			// echo "kliru rek hara";
+			$this->load->view('templates/header', $data);
+			$this->load->view('templates/sidebar', $data);
+			$this->load->view('templates/topbar', $data);
+			$this->load->view('user/changePass', $data);
+			$this->load->view('templates/footer');
+            // redirect('admin/dataMitra', 'refresh');
+        }
+	}
+
+	public function cekPwLama()
+	{
+		$id = $this->session->userdata('user_id');
+		$data['user'] = $this->user_model->getUserByID($id);
+		// var_dump($dataAdmin[0]->password);
+		if ($data['user']['password'] == md5($this->input->post('password'))) {
+			return true;
+		} else {
+			return false;
+		}
+
+	}
+
 	public function editMitra($id)
 	{
 		$data['title'] = 'Data Mitra | Cupo';

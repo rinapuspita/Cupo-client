@@ -136,13 +136,12 @@ class User_model extends CI_Model
         }
     }
 
-    public function getLogin($token)
+    public function getLogin()
     {
         try {
             $res = $this->_user->request('GET', 'users/get', [
                 'headers' => [
-                    'X-API-KEY' => 'apikey',
-                    'authorization' => "bearerHeader " . $token
+                    'X-API-KEY' => 'apikey'
                 ]
             ]);
             return json_decode($res->getBody()->getContents(), true);

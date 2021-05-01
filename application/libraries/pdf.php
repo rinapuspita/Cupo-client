@@ -42,10 +42,21 @@ class Pdf extends Dompdf{
      */
     public function load_view($view, $data = array()){
         $html = $this->ci()->load->view($view, $data, TRUE);
+        $this->set_option('isRemoteEnabled', TRUE);
         $this->load_html($html);
         // Render the PDF
         $this->render();
             // Output the generated PDF to Browser
                $this->stream($this->filename, array("Attachment" => false));
+    }
+
+    public function pdfGenerator($html, $filename,$paper, $orientation)
+    {
+        $dompdf = new Dompdf();
+        $dompdf->set_option('isRemoteEnabled', TRUE);
+        $dompdf->load_html($html);
+        $dompdf->setPaper($paper, $orientation);
+        $dompdf->render();
+        $dompdf->stream($filename, array('Attachment' => 0));
     }
 }
