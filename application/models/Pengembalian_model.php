@@ -42,6 +42,41 @@ class Pengembalian_model extends CI_Model {
         
     }
 
+    public function getKembaliActive($id)
+    {
+        try{
+            $response = $this->_kembali->request('GET', 'api/pengembalian/getKembaliAktivasi', [
+                'query' => [
+                    'X-API-KEY' => 'apikey', 
+                    'id_mitra' => $id
+                ]
+            ]);
+            $result = json_decode($response->getBody()->getContents(), true);
+            return $result['data'];
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+            echo $e->getResponse()->getBody()->getContents();
+        }
+    }
+
+    public function aktivasiAcc($id)
+    {
+        try{
+            $response = $this->_kembali->request('GET', 'api/pengembalian/changeActive', [
+                'headers' => [
+                    'X-API-KEY' => 'apikey',
+                ],
+                'query' => [
+                    'id_kembali' => $id,
+                ]
+            ]);
+            $result = json_decode($response->getBody()->getContents(), true);
+            return $result;
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            echo $e->getResponse()->getBody()->getContents();
+        }
+    }
+
+
     public function hitungKembali()
     {
         try{

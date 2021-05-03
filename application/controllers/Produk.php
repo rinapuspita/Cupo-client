@@ -26,19 +26,11 @@ class Produk extends CI_Controller {
         $id = $this->session->userdata('user_id');
         $data['title'] = 'Data Produk | Cupo';
         $data['produk'] = $this->produk_model->getM_Produk($id);
-        if($data['produk']>0){
-            $this->load->view('templates/header', $data);
-		    $this->load->view('templates/sidebar', $data);
-		    $this->load->view('templates/topbar', $data);
-		    $this->load->view('produk/index');
-		    $this->load->view('templates/footer');    
-        } else{
-            $this->load->view('templates/header', $data);
-		    $this->load->view('templates/sidebar', $data);
-		    $this->load->view('templates/topbar', $data);
-		    $this->load->view('produk/404');
-		    $this->load->view('templates/footer');    
-        }
+        $this->load->view('templates/header', $data);
+		$this->load->view('templates/sidebar', $data);
+		$this->load->view('templates/topbar', $data);
+		$this->load->view('produk/index');
+		$this->load->view('templates/footer');    
     }
 
     public function dataAdmin()
@@ -47,38 +39,22 @@ class Produk extends CI_Controller {
         $data['title'] = 'Data Produk | Cupo';
         $data['produk'] = $this->produk_model->getM_Produk($id);
         $data['mitra'] = $this->user_model->getUser();
-        if($data['produk']>0){
-            $this->load->view('templates/header', $data);
-		    $this->load->view('templates/sidebar', $data);
-		    $this->load->view('templates/topbar', $data);
-		    $this->load->view('produk/distribusi');
-		    $this->load->view('templates/footer');    
-        } else{
-            $this->load->view('templates/header', $data);
-		    $this->load->view('templates/sidebar', $data);
-		    $this->load->view('templates/topbar', $data);
-		    $this->load->view('produk/404');
-		    $this->load->view('templates/footer');    
-        }
+        $this->load->view('templates/header', $data);
+		$this->load->view('templates/sidebar', $data);
+		$this->load->view('templates/topbar', $data);
+		$this->load->view('produk/distribusi');
+		$this->load->view('templates/footer');    
     }
 
     public function getcupKotor()
     {
         $data['title'] = 'Maintenance Produk | Cupo';
         $data['produk'] = $this->produk_model->getProdukKotor();
-        if($data['produk']>0){
-            $this->load->view('templates/header', $data);
-		    $this->load->view('templates/sidebar', $data);
-		    $this->load->view('templates/topbar', $data);
-		    $this->load->view('produk/maintenance');
-		    $this->load->view('templates/footer');    
-        } else{
-            $this->load->view('templates/header', $data);
-		    $this->load->view('templates/sidebar', $data);
-		    $this->load->view('templates/topbar', $data);
-		    $this->load->view('produk/404');
-		    $this->load->view('templates/footer');    
-        }
+        $this->load->view('templates/header', $data);
+		$this->load->view('templates/sidebar', $data);
+		$this->load->view('templates/topbar', $data);
+		$this->load->view('produk/maintenance');
+		$this->load->view('templates/footer');    
     }
 
     public function cuciCup($id)

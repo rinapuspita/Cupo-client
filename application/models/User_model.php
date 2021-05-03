@@ -10,29 +10,104 @@ class User_model extends CI_Model
     {
         $this->_user = new Client([ // guzzle not found in this line code
             'base_uri' => 'https://server-cupo.xyz/'
+            // 'base_uri' => 'http://localhost/rest-server-cupo/'
         ]);
     }
 
     public function getUser()
     {
-        $response = $this->_user->request('GET', 'api/users/user', [
-            'query' => [
-                'X-API-KEY' => 'apikey'
-            ]
-        ]);
-        $result = json_decode($response->getBody()->getContents(), true);
-        return $result['data'];
+        try{
+            $response = $this->_user->request('GET', 'api/users/user', [
+                'query' => [
+                    'X-API-KEY' => 'apikey'
+                ]
+            ]);
+            $result = json_decode($response->getBody()->getContents(), true);
+            return $result['data'];
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+            // echo $e->getResponse()->getBody()->getContents();
+        }
+    }
+
+    public function getUserActive()
+    {
+        try{
+            $response = $this->_user->request('GET', 'api/users/userActive', [
+                'query' => [
+                    'X-API-KEY' => 'apikey'
+                ]
+            ]);
+            $result = json_decode($response->getBody()->getContents(), true);
+            return $result['data'];
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+            echo $e->getResponse()->getBody()->getContents();
+        }
+    }
+
+    public function aktivasiAcc($id)
+    {
+        try{
+            $response = $this->_user->request('GET', 'api/users/changeActive', [
+                'headers' => [
+                    'X-API-KEY' => 'apikey',
+                ],
+                'query' => [
+                    'id' => $id,
+                ]
+            ]);
+            $result = json_decode($response->getBody()->getContents(), true);
+            return $result;
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            echo $e->getResponse()->getBody()->getContents();
+        }
     }
 
     public function getCust()
     {
-        $response = $this->_user->request('GET', 'api/customer/', [
-            'query' => [
-                'X-API-KEY' => 'apikey'
-            ]
-        ]);
-        $result = json_decode($response->getBody()->getContents(), true);
-        return $result['data'];
+        try {
+            $response = $this->_user->request('GET', 'api/customer/', [
+                'query' => [
+                    'X-API-KEY' => 'apikey'
+                ]
+            ]);
+            $result = json_decode($response->getBody()->getContents(), true);
+            return $result['data'];
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+            // echo $e->getResponse()->getBody()->getContents();
+        }
+    }
+
+    public function getCustActive()
+    {
+        try{
+            $response = $this->_user->request('GET', 'api/customer/custActive', [
+                'query' => [
+                    'X-API-KEY' => 'apikey'
+                ]
+            ]);
+            $result = json_decode($response->getBody()->getContents(), true);
+            return $result['data'];
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+            // echo $e->getResponse()->getBody()->getContents();
+        }
+    }
+
+    public function aktivasiCust($id)
+    {
+        try{
+            $response = $this->_user->request('GET', 'api/customer/changeActive', [
+                'headers' => [
+                    'X-API-KEY' => 'apikey',
+                ],
+                'query' => [
+                    'id_cust' => $id,
+                ]
+            ]);
+            $result = json_decode($response->getBody()->getContents(), true);
+            return $result;
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            echo $e->getResponse()->getBody()->getContents();
+        }
     }
 
     public function hitungCust()

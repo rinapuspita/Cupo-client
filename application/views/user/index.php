@@ -25,8 +25,8 @@
                   <a href="<?= base_url() . 'admin/editAdmin/' . $user['id'] ?>" class="btn btn-primary mb-3">Edit Profile</a>
                   <a href="<?= base_url() . 'admin/editPassword/' . $user['id'] ?>" class="btn btn-primary mb-3">Ubah Password</a>
                 </div>
-                
               </div>
+
             </div>
           </div>
         </div>

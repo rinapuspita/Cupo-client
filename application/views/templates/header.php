@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<?php
+  if ($this->session->userdata('user_id') == null) {
+    $this->session->set_flashdata('pesan','<div class="alert alert-danger" role="alert">Login untuk Akses!</div>');
+  redirect('auth');
+}
+?>
 <head>
 
   <meta charset="utf-8">
@@ -8,12 +13,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-<?php
-  if ($this->session->userdata('user_id') == null) {
-    $this->session->set_flashdata('pesan','<div class="alert alert-danger" role="alert">Login untuk Akses!</div>');
-  redirect('auth');
-}
-?>
   <title><?= $title; ?></title>
   <!-- Custom fonts for this template-->
   <link href="<?= base_url('assets/'); ?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">

@@ -7,6 +7,7 @@ class Peminjaman_model extends CI_Model {
     public function __construct(){
         $this->_pinjam = new Client([
             'base_uri' => 'https://server-cupo.xyz/'
+                // 'base_uri' => 'http://localhost/rest-server-cupo/'
         ]);
     }
 
@@ -42,6 +43,41 @@ class Peminjaman_model extends CI_Model {
         
     }
 
+    public function getPinjamActive($id)
+    {
+        try{
+            $response = $this->_pinjam->request('GET', 'api/peminjaman/mPinjamAcc', [
+                'query' => [
+                    'X-API-KEY' => 'apikey', 
+                    'id_mitra' => $id
+                ]
+            ]);
+            $result = json_decode($response->getBody()->getContents(), true);
+            return $result['data'];
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+            echo $e->getResponse()->getBody()->getContents();
+        }
+    }
+
+    public function aktivasiAcc($id)
+    {
+        try{
+            $response = $this->_pinjam->request('GET', 'api/peminjaman/changeActive', [
+                'headers' => [
+                    'X-API-KEY' => 'apikey',
+                ],
+                'query' => [
+                    'id_pinjam' => $id,
+                ]
+            ]);
+            $result = json_decode($response->getBody()->getContents(), true);
+            return $result;
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            echo $e->getResponse()->getBody()->getContents();
+        }
+    }
+
+
     public function hitungPinjam()
     {
         try{
@@ -61,6 +97,24 @@ class Peminjaman_model extends CI_Model {
     {
         try{
             $response = $this->_pinjam->request('GET', 'api/peminjaman/mPinjam',[
+                'query' => [
+                    'X-API-KEY' => 'apikey',
+                    'id_mitra' => $id
+                ]
+            ]);
+            $result = json_decode($response->getBody()->getContents(), true);
+            return $result['data'];
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            // echo $e->getResponse()->getBody()->getContents();
+            $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Data Peminjaman Kosong</div>');
+        }
+        
+    }
+
+    public function getMitraPinjamToday($id)
+    {
+        try{
+            $response = $this->_pinjam->request('GET', 'api/peminjaman/mPinjamToday',[
                 'query' => [
                     'X-API-KEY' => 'apikey',
                     'id_mitra' => $id

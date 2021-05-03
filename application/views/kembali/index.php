@@ -8,7 +8,7 @@
       <div class="row">
         <div class="table-responsive">
         <?= form_error('kembali','<div class="alert alert-danger" role="alert">', '</div>'); ?>
-        <?= $this->session->flashdata('message'); ?>
+        <a href="<?= base_url() . 'pengembalian/getMitraAktivasi' ?>" class="btn btn-primary mb-3">Aktivasi Data Pengembalian</a>
           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
               <tr>
@@ -26,6 +26,7 @@
             <tbody>
             <?php $i=1; 
             $no =1;?>
+            <?php if($this->session->userdata('user_id') && !empty($kembali)) { ?>
               <?php foreach ($kembali as $k) : 
                 ?>
               <tr>
@@ -54,6 +55,11 @@
               </tr>
               <?php $i++; ?>
               <?php endforeach; ?>
+              <?php } else{?>
+                <div class="alert alert-danger" role="alert">
+                data tidak ditemukan.
+                </div>
+                <?php } ?>
             </tbody>
           </table>
         </div>

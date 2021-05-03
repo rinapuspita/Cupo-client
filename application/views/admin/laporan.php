@@ -37,7 +37,7 @@
                  </td>                      
               </tr>
               <tr>
-                <th scope="row">2</th>
+                <th scope="row">3</th>
                 <td>Laporan Data Customer</td>
                 <td>
                 <a href="<?= base_url(). 'laporan/lap_cust/' ?>" target="_blank" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
@@ -47,7 +47,7 @@
                  </td>                      
               </tr>
               <tr>
-                <th scope="row">2</th>
+                <th scope="row">4</th>
                 <td>Laporan Peminjaman</td>
                 <td>
                 <a href="<?= base_url(). 'laporan/lap_pinjam/' ?>" target="_blank" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
@@ -57,7 +57,7 @@
                  </td>                      
               </tr>
               <tr>
-                <th scope="row">2</th>
+                <th scope="row">5</th>
                 <td>Laporan Pengembalian</td>
                 <td>
                 <a href="<?= base_url(). 'laporan/lap_kembali/' ?>" target="_blank" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i

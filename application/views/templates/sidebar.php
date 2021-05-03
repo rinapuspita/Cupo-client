@@ -132,6 +132,14 @@
         <i class="fas fa-fw fa-chart-area"></i>
         <span>Pengembalian</span></a>
 </li>
+
+<!-- Nav Item - Pages Collapse Menu -->
+<li class="nav-item">
+    <a class="nav-link" href="<?= base_url('laporan/lapMitra'); ?>">
+        <i class="fa fa-file"></i>
+        <span>Laporan</span>
+    </a>
+</li>
 <?php } ?>
 
 <!-- Divider -->

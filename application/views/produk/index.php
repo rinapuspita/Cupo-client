@@ -27,6 +27,7 @@
             <tbody>
             <?php $i=1; 
             $no =1;?>
+            <?php if($this->session->userdata('user_id') && !empty($produk)) { ?>
               <?php foreach ($produk as $r) : 
                 ?>
               <tr>
@@ -62,6 +63,11 @@
               </tr>
               <?php $i++; ?>
               <?php endforeach; ?>
+              <?php } else{?>
+                <div class="alert alert-danger" role="alert">
+                data tidak ditemukan.
+                </div>
+                <?php } ?>
             </tbody>
           </table>
         </div>

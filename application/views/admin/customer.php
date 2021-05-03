@@ -10,6 +10,7 @@
         <?= form_error('user','<div class="alert alert-danger" role="alert">', '</div>'); ?>
   
         <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newRoleModal">Tambah customer Baru</a>
+        <a href="<?= base_url() . 'admin/dataCustActiv' ?>" class="btn btn-primary mb-3">Aktivasi Data Customer</a>
           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
               <tr>
@@ -25,6 +26,7 @@
             <tbody>
             <?php $i=1; 
             $no =1;?>
+            <?php if($this->session->userdata('user_id') && !empty($user)) { ?>
               <?php foreach ($user as $r) :  ?>
               <tr>
                 <th scope="row"><?= $no++; ?></th>
@@ -50,6 +52,11 @@
               </tr>
               <?php $i++; ?>
               <?php endforeach; ?>
+              <?php } else{?>
+                <div class="alert alert-danger" role="alert">
+                data tidak ditemukan.
+                </div>
+                <?php } ?>
             </tbody>
           </table>
         </div>

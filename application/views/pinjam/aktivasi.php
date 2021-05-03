@@ -8,7 +8,7 @@
       <div class="row">
         <div class="table-responsive">
         <?= form_error('pinjam','<div class="alert alert-danger" role="alert">', '</div>'); ?>
-        <a href="<?= base_url() . 'peminjaman/getMitraAktivasi' ?>" class="btn btn-primary mb-3">Aktivasi Data Peminjaman</a>
+        <?= $this->session->flashdata('message'); ?>
           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
               <tr>
@@ -35,9 +35,9 @@
                 <td><?= date('d F Y', strtotime($p['tanggal_haruskembali']));?></td>
                 <td><?= $p['status']; ?></td>
                 <td>
-                <a href="<?= base_url() . 'peminjaman/editMitra/' . $p['id_pinjam'] ?>" class="btn btn-success btn-icon-split">
+                <a href="<?= base_url() . 'peminjaman/accPinjam/' . $p['id_pinjam'] ?>" class="btn btn-success btn-icon-split">
                   <span class="icon text-white-50">
-                    <i class="fas fa-edit"></i>
+                    <i class="fas fa-check"></i>
                   </span>
                   <!-- <span class="text">Edit</span> -->
                 </a>
@@ -65,14 +65,3 @@
 
 </div>
 <!-- End of Main Content -->
-<!--
-<script>
-$(document).ready(function() {
-    $('#dataTable').DataTable( {
-        dom: 'Bfrtip',
-        buttons: [
-            'print'
-        ]
-    } );
-} );
-</script> -->

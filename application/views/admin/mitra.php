@@ -2,7 +2,6 @@
 <div id="content">
   <!-- Begin Page Content -->
   <div class="container-fluid">
-
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800"><?= $title ?></h1>          
       <div class="row">
@@ -10,6 +9,7 @@
         <?= form_error('user','<div class="alert alert-danger" role="alert">', '</div>'); ?>
   
         <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newRoleModal">Tambah Mitra Baru</a>
+        <a href="<?= base_url() . 'admin/dataMitraActiv' ?>" class="btn btn-primary mb-3">Aktivasi Data Mitra</a>
           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
               <tr>
@@ -25,6 +25,7 @@
             <tbody>
             <?php $i=1; 
             $no =1;?>
+            <?php if($this->session->userdata('user_id') && !empty($user)) { ?>
               <?php foreach ($user as $r) :  ?>
               <tr>
                 <th scope="row"><?= $no++; ?></th>
@@ -50,6 +51,11 @@
               </tr>
               <?php $i++; ?>
               <?php endforeach; ?>
+              <?php } else{?>
+                <div class="alert alert-danger" role="alert">
+                data tidak ditemukan.
+                </div>
+                <?php } ?>
             </tbody>
           </table>
         </div>

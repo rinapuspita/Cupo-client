@@ -32,10 +32,32 @@ class Admin extends CI_Controller {
 	{
 		$data['title'] = 'Data Mitra | Cupo';
         $data['user'] = $this->user_model->getUser();
+			$this->load->view('templates/header', $data);
+			$this->load->view('templates/sidebar', $data);
+			$this->load->view('templates/topbar', $data);
+			$this->load->view('admin/mitra');
+			$this->load->view('templates/footer');
+	}
+
+	public function accUser($id)
+	{
+		$data['title'] = 'Aktivasi Akun | Cupo';
+        $data['unreg'] = $this->user_model->aktivasiAcc($id);
+        if($data['unreg']){
+            redirect('admin/dataMitra', 'refresh');
+        } else{
+            echo 'gagal';
+        }
+	}
+
+	public function dataMitraActiv()
+	{
+		$data['title'] = 'Aktivasi Data Mitra | Cupo';
+		$data['unreg'] = $this->user_model->getUserActive();
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebar', $data);
 		$this->load->view('templates/topbar', $data);
-		$this->load->view('admin/mitra');
+		$this->load->view('admin/mitraAktif');
 		$this->load->view('templates/footer');
 	}
 
@@ -50,6 +72,28 @@ class Admin extends CI_Controller {
 		$this->load->view('templates/footer');
 	}
 
+	public function dataCustActiv()
+	{
+		$data['title'] = 'Aktivasi Data Customer | Cupo';
+		$data['unreg'] = $this->user_model->getCustActive();
+		$this->load->view('templates/header', $data);
+		$this->load->view('templates/sidebar', $data);
+		$this->load->view('templates/topbar', $data);
+		$this->load->view('admin/custAktif');
+		$this->load->view('templates/footer');
+	}
+
+	public function accCust($id)
+	{
+		$data['title'] = 'Aktivasi Akun | Cupo';
+        $data['unreg'] = $this->user_model->aktivasiCust($id);
+        if($data['unreg']){
+            redirect('admin/dataCust', 'refresh');
+        } else{
+            echo 'gagal';
+        }
+	}
+
 	public function addMitra()
     {
         $data['title'] = 'Data Mitra | Cupo';
@@ -60,7 +104,7 @@ class Admin extends CI_Controller {
         if ($this->form_validation->run() == true) {
             if($this->user_model->userRegister()>0){
                 echo "yey berhasil";
-                redirect('admin/dataMitra', 'refresh');
+                redirect('admin/dataMitraActiv', 'refresh');
             } else{
                 echo "yah gagal";
             }
@@ -80,7 +124,7 @@ class Admin extends CI_Controller {
         if ($this->form_validation->run() == true) {
             if($this->user_model->custRegister()>0){
                 echo "yey berhasil";
-                redirect('admin/dataCust', 'refresh');
+                redirect('admin/dataCustActiv', 'refresh');
             } else{
                 echo "yah gagal";
             }

@@ -23,6 +23,16 @@ class Laporan extends CI_Controller {
 		$this->load->view('templates/footer');
 	}
 
+	public function lapMitra() 
+	{
+		$data['title'] = 'Data Laporan | Cupo';
+		$this->load->view('templates/header', $data);
+		$this->load->view('templates/sidebar', $data);
+		$this->load->view('templates/topbar', $data);
+		$this->load->view('user/laporan');
+		$this->load->view('templates/footer');
+	}
+
 	public function lap_produk()
 	{
 
@@ -71,6 +81,29 @@ class Laporan extends CI_Controller {
 		$this->load->library('pdf');
 		$this->pdf->setPaper('A4', 'potrait');
 		$this->pdf->filename = "laporan_kembali.pdf";
+		$this->pdf->load_view('kembali/laporan', $data);
+	}
+
+	public function lap_pinjamMitra()
+	{
+		$id = $this->session->userdata('user_id');
+		
+		$this->load->library('pdf');
+        $data['pinjam'] = $this->pm->getMitraPinjam($id);
+		$this->load->library('pdf');
+		$this->pdf->setPaper('A4', 'potrait');
+		$this->pdf->filename = "laporan_pinjamMitra.pdf";
+		$this->pdf->load_view('pinjam/laporan', $data);
+	}
+
+	public function lap_kembaliMitra()
+	{
+		$id = $this->session->userdata('user_id');
+		$this->load->library('pdf');
+        $data['kembali'] = $this->pem->getKembaliMitra($id);
+		$this->load->library('pdf');
+		$this->pdf->setPaper('A4', 'potrait');
+		$this->pdf->filename = "laporan_kembaliMitra.pdf";
 		$this->pdf->load_view('kembali/laporan', $data);
 	}
 
