@@ -11,7 +11,7 @@
         <div class="sidebar-brand-text mx-3">Cupo Admin</div>
     <?php } ?>
     <?php if($this->session->userdata('level') == '2'){ ?>
-        <div class="sidebar-brand-text mx-3">Cupo Mitra</div>
+        <div class="sidebar-brand-text mx-3">Cupo Partner</div>
     <?php } ?>
 </a>
 
@@ -32,7 +32,7 @@
 <li class="nav-item">
     <a class="nav-link" href="<?= base_url('produk'); ?>">
         <i class="fa fa-beer"></i>
-        <span>Data Produk</span>
+        <span>Data Product</span>
     </a>
 </li>
 
@@ -65,7 +65,7 @@
 <li class="nav-item">
     <a class="nav-link" href="<?= base_url('produk/dataAdmin'); ?>">
         <i class="fa fa-truck"></i>
-        <span>Distribusi</span>
+        <span>Distribution</span>
     </a>
 </li>
 
@@ -73,7 +73,7 @@
 <li class="nav-item">
     <a class="nav-link" href="<?= base_url('lokasi'); ?>">
         <i class="fa fa-map-marker"></i>
-        <span>Lokasi</span>
+        <span>Location</span>
     </a>
 </li>
 
@@ -81,7 +81,7 @@
 <li class="nav-item">
     <a class="nav-link" href="<?= base_url('laporan'); ?>">
         <i class="fa fa-file"></i>
-        <span>Laporan</span>
+        <span>Report</span>
     </a>
 </li>
 
@@ -114,7 +114,7 @@
 <li class="nav-item">
     <a class="nav-link" href="<?= base_url('produk/dataMitra'); ?>">
         <i class="fas fa-fw fa-cog"></i>
-        <span>Produk</span>
+        <span>Product</span>
     </a>
 </li>
 
@@ -122,7 +122,7 @@
 <li class="nav-item">
     <a class="nav-link" href="<?= base_url('peminjaman/getMitra'); ?>" >
         <i class="fas fa-fw fa-folder"></i>
-        <span>Peminjaman</span>
+        <span>Lending</span>
     </a>
 </li>
 
@@ -130,14 +130,14 @@
 <li class="nav-item">
     <a class="nav-link" href="<?= base_url('pengembalian/getMitra'); ?>">
         <i class="fas fa-fw fa-chart-area"></i>
-        <span>Pengembalian</span></a>
+        <span>Return</span></a>
 </li>
 
 <!-- Nav Item - Pages Collapse Menu -->
 <li class="nav-item">
     <a class="nav-link" href="<?= base_url('laporan/lapMitra'); ?>">
         <i class="fa fa-file"></i>
-        <span>Laporan</span>
+        <span>Report</span>
     </a>
 </li>
 <?php } ?>

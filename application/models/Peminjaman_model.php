@@ -55,7 +55,7 @@ class Peminjaman_model extends CI_Model {
             $result = json_decode($response->getBody()->getContents(), true);
             return $result['data'];
         } catch (\GuzzleHttp\Exception\ClientException $e) {
-            echo $e->getResponse()->getBody()->getContents();
+            // echo $e->getResponse()->getBody()->getContents();
         }
     }
 
@@ -89,7 +89,23 @@ class Peminjaman_model extends CI_Model {
             $result = json_decode($response->getBody()->getContents(), true);
             return $result['data'];
         } catch(\GuzzleHttp\Exception\ClientException $e) {
-            echo $e->getResponse()->getBody()->getContents();
+            // echo $e->getResponse()->getBody()->getContents();
+        }
+    }
+
+    public function hitung($id)
+    {
+        try{
+            $response = $this->_pinjam->request('GET', 'api/peminjaman/getRowsMitra', [
+                'query' => [
+                    'X-API-KEY' => 'apikey',
+                    'id_mitra' => $id
+                ]
+            ]);
+            $result = json_decode($response->getBody()->getContents(), true);
+            return $result['data'];
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            // echo $e->getResponse()->getBody()->getContents();
         }
     }
 

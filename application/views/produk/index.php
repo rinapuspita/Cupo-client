@@ -2,23 +2,27 @@
 <div id="content">
   <!-- Begin Page Content -->
   <div class="container-fluid">
-
+  <?php if (validation_errors()) : ?>
+              <div class="alert alert-danger" role="alert">
+                <?= validation_errors(); ?>
+              </div>
+              <?php endif; ?>
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800"><?= $title ?></h1>          
       <div class="row">
         <div class="table-responsive">
         <?= form_error('produk','<div class="alert alert-danger" role="alert">', '</div>'); ?>
         <?php if($this->session->userdata('level') == '1'){ ?>
-          <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newRoleModal">Tambah Produk Baru</a>
+          <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newRoleModal">Add New Product</a>
         <?php } ?>
           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
               <tr>
                 <th scope="col">No</th>
-                <th scope="col">Nama Produk</th>
+                <th scope="col">Product Name</th>
                 <th scope="col">QR Code</th>
                 <th scope="col">Status</th>
-                <th scope="col">ID Lokasi</th>
+                <th scope="col">ID Location</th>
                 <?php if ($this->session->userdata('level') == '1') { ?>
                 <th>Action</th>
                 <?php } ?>
@@ -35,7 +39,13 @@
                 <td><?= $r['nama_produk']; ?></td>
                 <td><img src="<?= 'https://server-cupo.xyz/assets/images/'. $r['qr_code']; ?>" style="width: 100px; height:100px;"></td>
                 <td>
-                <?= $r['status'];?>
+                <?php if($r['status'] == 1){?>
+                  <?= 'Available'?>
+                <?php } elseif($r['status'] == 2){?>
+                  <?= 'Maintenance'?>
+                <?php } else{?>
+                  <?= 'Not Available'?>
+                <?php }?>
                 </td>
                 <td><?= $r['id_mitra']; ?></td>
                 <?php if ($this->session->userdata('level') == '1') { ?>
@@ -52,7 +62,7 @@
                   </span>
                   <!-- <span class="text">Edit</span> -->
                 </a>
-                <a href="<?= base_url() . 'produk/hapus/' . $r['id_produk'] ?>" onclick="return confirm('Hapus data ini?')" class="btn btn-danger btn-icon-split">
+                <a href="<?= base_url() . 'produk/hapus/' . $r['id_produk'] ?>" onclick="return confirm('Delete this data?')" class="btn btn-danger btn-icon-split">
                   <span class="icon text-white-50">
                     <i class="fas fa-trash"></i>
                   </span>
@@ -65,7 +75,7 @@
               <?php endforeach; ?>
               <?php } else{?>
                 <div class="alert alert-danger" role="alert">
-                data tidak ditemukan.
+                Empty Data.
                 </div>
                 <?php } ?>
             </tbody>
@@ -91,8 +101,9 @@
       <form action="<?= base_url('produk/add'); ?>" method="post">
         <div class="modal-body">
         <div class="form-group">
-          <input type="text" class="form-control" id="nama_produk" name="nama_produk" placeholder="Tambah nama produk">
+          <input type="text" class="form-control" id="nama_produk" name="nama_produk" value="<?php echo set_value('nama_produk'); ?>" placeholder="Tambah nama produk">
         </div>
+        <?= form_error('nama_produk','<small class="text-danger pl-3">','</small>'); ?> 
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

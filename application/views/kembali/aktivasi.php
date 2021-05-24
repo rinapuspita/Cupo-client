@@ -12,13 +12,13 @@
             <thead>
               <tr>
                 <th scope="col">No</th>
-                <th scope="col">Nama Peminjam</th>
-                <th scope="col">Nama Produk</th>
-                <th scope="col">Lokasi Kembali</th>
-                <th scope="col">Tanggal Pengembalian</th>
-                <th scope="col">Terlambat</th>  
-                <th scope="col">Denda</th>     
-                <th scope="col">Aksi</th>                      
+                <th scope="col">Borrower Name</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Return Location</th>
+                <th scope="col">Return Date</th>
+                <th scope="col">Late</th>  
+                <th scope="col">Fine</th>     
+                <th scope="col">Action</th>                      
               </tr>
             </thead>
             <tbody>
@@ -42,7 +42,7 @@
                   </span>
                   <!-- <span class="text">Edit</span> -->
                 </a>
-                <a href="<?= base_url() . 'pengembalian/hapus/' . $k['id_kembali'] ?>" onclick="return confirm('Hapus data ini?')" class="btn btn-danger btn-icon-split">
+                <a href="<?= base_url() . 'pengembalian/hapus/' . $k['id_kembali'] ?>" onclick="return confirm('Delete this data?')" class="btn btn-danger btn-icon-split">
                   <span class="icon text-white-50">
                     <i class="fas fa-trash"></i>
                   </span>
@@ -54,7 +54,7 @@
               <?php endforeach; ?>
               <?php } else{?>
                 <div class="alert alert-danger" role="alert">
-                data tidak ditemukan.
+                Empty Data.
                 </div>
                 <?php } ?>
             </tbody>
@@ -63,13 +63,5 @@
       </div>
   </div>
   <!-- /.container-fluid -->
-$(document).ready(function() {
-    $('#dataTable').DataTable( {
-        dom: 'Bfrtip',
-        buttons: [
-            'print'
-        ]
-    } );
-} );
 </div>
 <!-- End of Main Content -->

@@ -37,7 +37,7 @@
                   </span>
                   <!-- <span class="text">Edit</span> -->
                 </a>
-                <a href="<?= base_url() . 'admin/hapusCust/' . $r['id_cust'] ?>" onclick="return confirm('Hapus data ini?')" class="btn btn-danger btn-icon-split">
+                <a href="<?= base_url() . 'admin/hapusCust/' . $r['id_cust'] ?>" onclick="return confirm('Delete this data?')" class="btn btn-danger btn-icon-split">
                   <span class="icon text-white-50">
                     <i class="fas fa-trash"></i>
                   </span>
@@ -49,7 +49,7 @@
               <?php endforeach; ?>
               <?php } else{?>
                 <div class="alert alert-danger" role="alert">
-                data tidak ditemukan.
+                Empty Data.
                 </div>
                 <?php } ?>
             </tbody>

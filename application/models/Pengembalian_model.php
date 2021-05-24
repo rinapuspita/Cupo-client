@@ -45,7 +45,7 @@ class Pengembalian_model extends CI_Model {
     public function getKembaliActive($id)
     {
         try{
-            $response = $this->_kembali->request('GET', 'api/pengembalian/getKembaliAktivasi', [
+            $response = $this->_kembali->request('GET', 'api/pengembalian/mKembaliAcc', [
                 'query' => [
                     'X-API-KEY' => 'apikey', 
                     'id_mitra' => $id
@@ -54,7 +54,7 @@ class Pengembalian_model extends CI_Model {
             $result = json_decode($response->getBody()->getContents(), true);
             return $result['data'];
         } catch (\GuzzleHttp\Exception\ClientException $e) {
-            echo $e->getResponse()->getBody()->getContents();
+            // echo $e->getResponse()->getBody()->getContents();
         }
     }
 
@@ -88,7 +88,23 @@ class Pengembalian_model extends CI_Model {
             $result = json_decode($response->getBody()->getContents(), true);
             return $result['data'];
         } catch(\GuzzleHttp\Exception\ClientException $e) {
-            echo $e->getResponse()->getBody()->getContents();
+            // echo $e->getResponse()->getBody()->getContents();
+        }
+    }
+
+    public function hitung($id)
+    {
+        try{
+            $response = $this->_kembali->request('GET', 'api/pengembalian/getRowsMitra', [
+                'query' => [
+                    'X-API-KEY' => 'apikey',
+                    'id_mitra' => $id
+                ]
+            ]);
+            $result = json_decode($response->getBody()->getContents(), true);
+            return $result['data'];
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            // echo $e->getResponse()->getBody()->getContents();
         }
     }
 

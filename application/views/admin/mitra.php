@@ -8,8 +8,8 @@
         <div class="table-responsive">
         <?= form_error('user','<div class="alert alert-danger" role="alert">', '</div>'); ?>
   
-        <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newRoleModal">Tambah Mitra Baru</a>
-        <a href="<?= base_url() . 'admin/dataMitraActiv' ?>" class="btn btn-primary mb-3">Aktivasi Data Mitra</a>
+        <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newRoleModal">Add New Partner</a>
+        <a href="<?= base_url() . 'admin/dataMitraActiv' ?>" class="btn btn-primary mb-3">Partner Data Activation</a>
           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
               <tr>
@@ -41,7 +41,7 @@
                   </span>
                   <!-- <span class="text">Edit</span> -->
                 </a>
-                <a href="<?= base_url() . 'admin/hapusMitra/' . $r['id'] ?>" onclick="return confirm('Hapus data ini?')" class="btn btn-danger btn-icon-split">
+                <a href="<?= base_url() . 'admin/hapusMitra/' . $r['id'] ?>" onclick="return confirm('Delete this data?')" class="btn btn-danger btn-icon-split">
                   <span class="icon text-white-50">
                     <i class="fas fa-trash"></i>
                   </span>
@@ -53,7 +53,7 @@
               <?php endforeach; ?>
               <?php } else{?>
                 <div class="alert alert-danger" role="alert">
-                data tidak ditemukan.
+                Empty data.
                 </div>
                 <?php } ?>
             </tbody>

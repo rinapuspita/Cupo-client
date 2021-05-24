@@ -7,20 +7,17 @@ class User extends CI_Controller {
 		parent::__construct();
 		// is_logged_in();
 		$this->load->model('user_model');
+		$this->load->model('produk_model');
+		$this->load->model('peminjaman_model');
+		$this->load->model('pengembalian_model');
 	}
 	public function index() 
 	{
-		$data['title'] = 'User Profile';
-		// $data['user'] = $this->user_model->getLogin();
-		
-		// $this->load->view('templates/header', $data);
-		// $this->load->view('templates/sidebar', $data);
-		// $this->load->view('templates/topbar', $data);
-		// $this->load->view('user/index', $data);
-		// $this->load->view('templates/footer');
 		$id = $this->session->userdata('user_id');
-		$data['title'] = 'User Profile';
-		// $data['user'] = $this->user_model->getLogin();
+		$data['title'] = 'Dashboard';
+		$data['produk'] = $this->produk_model->hitung($id);
+		$data['pinjam'] = $this->peminjaman_model->hitung($id);
+		$data['kembali'] = $this->pengembalian_model->hitung($id);
 		$data['user'] = $this->user_model->getUserByID($id);
 		$this->session->set_userdata('name',  $data['user']["fullname"]);
 		$this->load->view('templates/header', $data);
@@ -30,59 +27,7 @@ class User extends CI_Controller {
 		$this->load->view('templates/footer');
 	}	
 	
-	public function edit() 
-	{
-		$data['title'] = 'Edit Profile';
-		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-		
-		$this->form_validation->set_rules('name', 'Full Name', 'required|trim');
-
-		if($this->form_validation->run() == false) {		
-			$this->load->view('templates/header', $data);
-			$this->load->view('templates/sidebar', $data);
-			$this->load->view('templates/topbar', $data);
-			$this->load->view('user/edit', $data);
-			$this->load->view('templates/footer');
-		} else {
-			$name = $this->input->post('name');
-			$email = $this->input->post('email');
-
-			// cek jika ada gambar di upload
-			$upload_image = $_FILES['image']['name'];
-
-			if($upload_image) {
-				$config['upload_path'] = './assets/img/profile/';
-				$config['allowed_types'] = 'gif|jpg|jpeg|png';
-				$config['max_size']     = '2048';
-				// $config['max_width'] = '1024';
-				// $config['max_height'] = '768';
-
-				$this->load->library('upload', $config);
-
-				if ($this->upload->do_upload('image')) {
-					$old_image = $data['user']['image'];
-					if($old_image != 'default.jpg') {
-						unlink(FCPATH . 'assets/img/profile/' . $old_image);
-					}
-
-					$new_image = $this->upload->data('file_name');
-					$this->db->set('image', $new_image);  
-				} else {
-					// echo $this->upload->display_errors();
-					$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">' . $this->upload->display_errors() . '</div>');
-					redirect('user');
-				}
-			}
-
-			$this->db->set('name', $name);
-			$this->db->where('email', $email);
-			$this->db->update('user');
-			
-			$this->session->set_flashdata('message','<div class="alert alert-success" role="alert">your profile has been updated!</div>');
-			redirect('user');
-		}
-	}
-
+	
 	public function changePassword() 
 	{
 		$data['title'] = 'Change Password';

@@ -12,7 +12,7 @@ class Lokasi extends CI_Controller {
 
 	public function index() 
 	{
-		$data['title'] = 'Lokasi Mitra | Cupo';
+		$data['title'] = 'Partner Location | Cupo';
 		$data['mitra'] = $this->user_model->getUser();
         $data['lokasi'] = $this->lokasi_model->getLokasi();
 		$this->load->view('templates/header', $data);
@@ -24,7 +24,7 @@ class Lokasi extends CI_Controller {
 
 	public function tambah()
 	{
-		$data['title'] = 'Data Lokasi | Cupo';
+		$data['title'] = 'Location Data | Cupo';
 		$data['mitra'] = $this->user_model->getUser();
         $this->form_validation->set_rules('alamat', 'alamat', 'required');
         $this->form_validation->set_rules('latitude', 'latitude', 'required');
@@ -44,7 +44,7 @@ class Lokasi extends CI_Controller {
 
 	public function edit($id)
 	{
-		$data['title'] = 'Data Lokasi | Cupo';
+		$data['title'] = 'Location Data | Cupo';
 		$data['mitra'] = $this->user_model->getUser();
 		$data['lokasi'] = $this->lokasi_model->getLokasibyID($id);
         $this->form_validation->set_rules('alamat', 'alamat', 'required');

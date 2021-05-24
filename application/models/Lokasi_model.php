@@ -107,4 +107,19 @@ class Lokasi_model extends CI_Model {
             echo $e->getResponse()->getBody()->getContents();
         }
     }
+
+    public function hitung()
+    {
+        try{
+            $response = $this->_lokasi->request('GET', 'api/lokasi/getRows', [
+                'headers' => [
+                    'X-API-KEY' => 'apikey'
+                ]
+            ]);
+            $result = json_decode($response->getBody()->getContents(), true);
+            return $result['data'];
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            // echo $e->getResponse()->getBody()->getContents();
+        }
+    }
 }

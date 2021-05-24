@@ -12,7 +12,7 @@ class Produk extends CI_Controller {
 
 	public function index() 
 	{
-		$data['title'] = 'Data Produk | Cupo';
+		$data['title'] = 'Product Data | Cupo';
         $data['produk'] = $this->produk_model->getProduk();
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebar', $data);
@@ -24,7 +24,7 @@ class Produk extends CI_Controller {
     public function dataMitra()
     {
         $id = $this->session->userdata('user_id');
-        $data['title'] = 'Data Produk | Cupo';
+        $data['title'] = 'Data Product | Cupo';
         $data['produk'] = $this->produk_model->getM_Produk($id);
         $this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebar', $data);
@@ -36,7 +36,7 @@ class Produk extends CI_Controller {
     public function dataAdmin()
     {
         $id = 1;
-        $data['title'] = 'Data Produk | Cupo';
+        $data['title'] = 'Data Product | Cupo';
         $data['produk'] = $this->produk_model->getM_Produk($id);
         $data['mitra'] = $this->user_model->getUser();
         $this->load->view('templates/header', $data);
@@ -48,7 +48,7 @@ class Produk extends CI_Controller {
 
     public function getcupKotor()
     {
-        $data['title'] = 'Maintenance Produk | Cupo';
+        $data['title'] = 'Maintenance Product | Cupo';
         $data['produk'] = $this->produk_model->getProdukKotor();
         $this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebar', $data);
@@ -59,7 +59,7 @@ class Produk extends CI_Controller {
 
     public function cuciCup($id)
     {
-        $data['title'] = 'Data Produk | Cupo';
+        $data['title'] = 'Data Product | Cupo';
         $data['produk'] = $this->produk_model->getCuci($id);
         if($data['produk']){
             redirect('produk/getcupKotor', 'refresh');
@@ -68,40 +68,61 @@ class Produk extends CI_Controller {
         }
     }
 
-    public function distribusi()
+    public function distribusi($id)
     {
-        $data['title'] = 'Distribusi Produk | Cupo';
+        $data['title'] = 'Distribution Product | Cupo';
         $data['mitra'] = $this->user_model->getUser();
-        $id = $this->input->post('id_produk');
+        // $id = $this->input->post('id_produk');
+        $data['produk'] = $this->produk_model->getProdukByID($id);
         $lokasi = $this->input->post('id_mitra');
-        $data['produk'] = $this->produk_model->updateLokasi($lokasi, $id);
-        if($data['produk']){
-            redirect('produk/dataAdmin', 'refresh');
+        $this->form_validation->set_rules('id_mitra', 'ID Mitra', 'required');
+        if ($this->form_validation->run() == true) {
+            $data['produk'] = $this->produk_model->updateLokasi($lokasi, $id);
+            if($data['produk']){
+                redirect('produk/dataAdmin', 'refresh');
+            } else{
+                echo 'gagal';
+            }
         } else{
-            echo 'gagal';
+            $this->load->view('templates/header', $data);
+		    $this->load->view('templates/sidebar', $data);
+		    $this->load->view('templates/topbar', $data);
+		    $this->load->view('produk/distribusiMitra', $data);
+		    $this->load->view('templates/footer'); 
         }
     }
 
     public function add()
     {
-        $data['title'] = 'Data Produk | Cupo';
-        $this->form_validation->set_rules('nama_produk', 'Nama Produk', 'required');
+        $data['title'] = 'Data Product | Cupo';
+        $data['produk'] = $this->produk_model->getProduk();
+        $this->form_validation->set_rules('nama_produk', 'Nama Produk', 'required|is_unique[produk.nama_produk]');
         if ($this->form_validation->run() == true) {
-            if($this->produk_model->addProduk()>0){
+            // if($this->produk_model->addProduk()>0){
                 echo "yey berhasil";
                 redirect('produk', 'refresh');
             } else{
-                echo "yah gagal";
+                // echo "yah gagal";
+                // echo validation_errors('<div class="error">', '</div>');
+                // $this->session->set_flashdata('produk', validation_errors());
+                // redirect('produk', 'refresh');
+                $this->load->view('templates/header', $data);
+		        $this->load->view('templates/sidebar', $data);
+		        $this->load->view('templates/topbar', $data);
+		        $this->load->view('produk/index');
+		        $this->load->view('templates/footer');
+                // echo form_error('nama_produk', '<div class="error">', '</div>');
+                // $this->form_validation->set_message('nama_produk');
             }
 
-          } else {
-            redirect('produk', 'refresh');
-          }
+        //   } else {
+        //     redirect('produk', 'refresh');
+        //   }
     }
 
     public function edit($id)
     {
-        $data['title'] = 'Data Produk | Cupo';
+        $data['title'] = 'Data Product | Cupo';
         $data['produk'] = $this->produk_model->getProdukByID($id);
         $this->form_validation->set_rules('nama_produk', 'Nama Produk', 'required');
         if ($this->form_validation->run() == true) {

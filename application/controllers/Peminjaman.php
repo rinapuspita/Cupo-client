@@ -11,7 +11,7 @@ class Peminjaman extends CI_Controller {
 
 	public function index() 
 	{
-		$data['title'] = 'Data Peminjaman | Cupo';
+		$data['title'] = 'Loan Data | Cupo';
         $data['pinjam'] = $this->peminjaman_model->getPinjam();
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebar', $data);
@@ -23,7 +23,7 @@ class Peminjaman extends CI_Controller {
 	public function getMitra() 
 	{
 		$id = $this->session->userdata('user_id');
-		$data['title'] = 'Data Peminjaman | Cupo';
+		$data['title'] = 'Loan Data | Cupo';
         $data['pinjam'] = $this->peminjaman_model->getMitraPinjam($id);
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebar', $data);
@@ -35,7 +35,7 @@ class Peminjaman extends CI_Controller {
 	public function getMitraAktivasi() 
 	{
 		$id = $this->session->userdata('user_id');
-		$data['title'] = 'Data Peminjaman | Cupo';
+		$data['title'] = 'Loan Data | Cupo';
         $data['pinjam'] = $this->peminjaman_model->getPinjamActive($id);
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebar', $data);
@@ -46,7 +46,7 @@ class Peminjaman extends CI_Controller {
 
 	public function accPinjam($id)
 	{
-		$data['title'] = 'Aktivasi Akun | Cupo';
+		$data['title'] = 'Loan Activation | Cupo';
         $data['pinjam'] = $this->peminjaman_model->aktivasiAcc($id);
         if($data['pinjam']){
             redirect('peminjaman/getMitra', 'refresh');
@@ -58,7 +58,7 @@ class Peminjaman extends CI_Controller {
 	public function getMitraToday() 
 	{
 		$id = $this->session->userdata('user_id');
-		$data['title'] = 'Data Peminjaman Hari Ini | Cupo';
+		$data['title'] = 'Loan Data Today | Cupo';
         $data['pinjam'] = $this->peminjaman_model->getMitraPinjamToday($id);
 		if($data['pinjam']>0){
 			$this->load->view('templates/header', $data);
@@ -77,7 +77,7 @@ class Peminjaman extends CI_Controller {
 
 	public function editMitra($id)
 	{
-		$data['title'] = 'Data Peminjaman | Cupo';
+		$data['title'] = 'Loan Data | Cupo';
 		$data['pinjam'] = $this->peminjaman_model->getPinjamByID($id);
         // var_dump($data['pinjam']); die;
 		$this->form_validation->set_rules('id_pinjam', 'ID Pinjam', 'required');

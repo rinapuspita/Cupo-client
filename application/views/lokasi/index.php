@@ -9,13 +9,14 @@
         <div class="table-responsive">
         <?= form_error('lokasi','<div class="alert alert-danger" role="alert">', '</div>'); ?>
   
-        <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newRoleModal">Tambah Lokasi Mitra</a>
+        <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newRoleModal">Add Location Data</a>
+      
           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
               <tr>
                 <th scope="col">No</th>
-                <th scope="col">Mitra</th>
-                <th scope="col">Alamat</th>
+                <th scope="col">Partner</th>
+                <th scope="col">Address</th>
                 <th scope="col">Latitude</th>
                 <th scope="col">Longitude</th>
                 <th scope="col">Action</th>                      
@@ -63,7 +64,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="newRoleModalLabel">Tambah Data Lokasi</h5>
+        <h5 class="modal-title" id="newRoleModalLabel">Add Location Data</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -71,7 +72,22 @@
       <form action="<?= base_url('lokasi/tambah'); ?>" method="post">
         <div class="modal-body">
         <div class="form-group">
-        <label for="id_mitra">Pilih Lokasi Mitra</label>
+        <!-- Collapsable Card Example -->
+      <div class="card shadow mb-4">
+      <!-- Card Header - Accordion -->
+        <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
+        <h6 class="m-0 font-weight-bold text-primary">Get the coordinates of a place</h6></a>
+        <!-- Card Content - Collapse -->
+        <div class="collapse show" id="collapseCardExample">
+        <div class="card-body">
+        1. On your computer, open <a href="https://www.google.com/maps">Google Maps</a>. <br>
+        2. Right-click the place or area on the map.<br>
+        3. Select the latitude and longitude, this will automatically copy the coordinates.
+        </div>
+      </div>
+      </div>
+      
+        <label for="id_mitra">Select Partner Location</label>
           <select class="form-control" name="id_mitra" id="id_mitra">
             <?php 
             foreach($mitra as $row){ 
@@ -81,7 +97,7 @@
           </select>
         </div>
         <div class="form-group">
-          <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat Mitra" value="<?= set_value('alamat'); ?>">
+          <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Partner Address" value="<?= set_value('alamat'); ?>">
           <?= form_error('alamat','<small class="text-danger pl-3">','</small>'); ?> 
         </div>
         <div class="form-group">

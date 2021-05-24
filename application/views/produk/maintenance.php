@@ -12,10 +12,10 @@
             <thead>
               <tr>
                 <th scope="col">No</th>
-                <th scope="col">Nama Produk</th>
+                <th scope="col">Product Name</th>
                 <th scope="col">QR Code</th>
                 <th scope="col">Status</th>
-                <th scope="col">ID Lokasi</th>
+                <th scope="col">ID Location</th>
                 <th scope="col">Action</th>                      
               </tr>
             </thead>
@@ -34,7 +34,7 @@
                 </td>
                 <td><?= $r['id_mitra']; ?></td>
                 <td>
-                <a href="<?= base_url(). 'produk/cuciCup/' . $r['id_produk'] ?>" class="btn btn-info btn-icon-split" onclick="return confirm('Maintenance produk ini?')">
+                <a href="<?= base_url(). 'produk/cuciCup/' . $r['id_produk'] ?>" class="btn btn-info btn-icon-split" onclick="return confirm('Maintenance this product?')">
                   <span class="icon text-white-50">
                     <i class="fas fa-info-circle"></i>
                   </span>
@@ -46,7 +46,7 @@
               <?php endforeach; ?>
               <?php } else{?>
                 <div class="alert alert-danger" role="alert">
-                data tidak ditemukan.
+                Empty Data.
                 </div>
                 <?php } ?>
             </tbody>

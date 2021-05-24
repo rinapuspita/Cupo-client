@@ -7,13 +7,13 @@
     <div class="col-lg-8">
       <?= form_open('lokasi/edit/'.$lokasi['id_lokasi']);?>
       <div class="form-group row">
-            <label for="id" class="col-sm-2 col-form-label">ID Lokasi</label>
+            <label for="id" class="col-sm-2 col-form-label">Location ID</label>
             <div class="col-sm-10">
               <input type="text" class="form-control" id="id_lokasi" name="id_lokasi" value="<?= $lokasi['id_lokasi']?>" readonly>
             </div>
           </div>
           <div class="form-group row">
-        <label for="id_mitra" class="col-sm-2 col-form-label">Lokasi Mitra</label>
+        <label for="id_mitra" class="col-sm-2 col-form-label">Partner Location</label>
         <div class="col-sm-10">
           <select class="form-control" name="id_mitra" id="id_mitra" disabled>
           <?php foreach ($mitra as $row) : ?>
@@ -27,9 +27,9 @@
         </div>
           </div>
         <div class="form-group row">
-            <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
+            <label for="alamat" class="col-sm-2 col-form-label">Address</label>
             <div class="col-sm-10">
-            <textarea class="form-control" id="alamat" name="alamat" placeholder="alamat">
+            <textarea class="form-control" id="alamat" name="alamat" placeholder="Address">
             </textarea>
             <?= form_error('alamat','<small class="text-danger pl-3">','</small>'); ?> 
             </div>

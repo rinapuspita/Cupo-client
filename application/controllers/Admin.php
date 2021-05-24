@@ -7,6 +7,7 @@ class Admin extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('user_model');
+		$this->load->model('lokasi_model');
 		$this->load->model('produk_model');
 		$this->load->model('peminjaman_model');
 		$this->load->model('pengembalian_model');
@@ -18,6 +19,8 @@ class Admin extends CI_Controller {
 		$data['user'] = $this->user_model->getLogin($token);
 		$data['produk'] = $this->produk_model->hitungProduk();
 		$data['cust'] = $this->user_model->hitungCust();
+		$data['user'] = $this->user_model->hitung();
+		$data['lokasi'] = $this->lokasi_model->hitung();
 		$data['pinjam'] = $this->peminjaman_model->hitungPinjam();
 		$data['kembali'] = $this->pengembalian_model->hitungKembali();
 		$data['title'] = 'Dashboard';
@@ -30,7 +33,7 @@ class Admin extends CI_Controller {
 
 	public function dataMitra()
 	{
-		$data['title'] = 'Data Mitra | Cupo';
+		$data['title'] = 'Partner Data | Cupo';
         $data['user'] = $this->user_model->getUser();
 			$this->load->view('templates/header', $data);
 			$this->load->view('templates/sidebar', $data);
@@ -41,7 +44,7 @@ class Admin extends CI_Controller {
 
 	public function accUser($id)
 	{
-		$data['title'] = 'Aktivasi Akun | Cupo';
+		$data['title'] = 'Account Activation | Cupo';
         $data['unreg'] = $this->user_model->aktivasiAcc($id);
         if($data['unreg']){
             redirect('admin/dataMitra', 'refresh');
@@ -52,7 +55,7 @@ class Admin extends CI_Controller {
 
 	public function dataMitraActiv()
 	{
-		$data['title'] = 'Aktivasi Data Mitra | Cupo';
+		$data['title'] = 'Activation Partner Data | Cupo';
 		$data['unreg'] = $this->user_model->getUserActive();
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebar', $data);
@@ -63,7 +66,7 @@ class Admin extends CI_Controller {
 
 	public function dataCust()
 	{
-		$data['title'] = 'Data Customer | Cupo';
+		$data['title'] = 'Customer Data | Cupo';
         $data['user'] = $this->user_model->getCust();
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebar', $data);
@@ -74,7 +77,7 @@ class Admin extends CI_Controller {
 
 	public function dataCustActiv()
 	{
-		$data['title'] = 'Aktivasi Data Customer | Cupo';
+		$data['title'] = 'Activation Customer Data | Cupo';
 		$data['unreg'] = $this->user_model->getCustActive();
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebar', $data);
@@ -85,7 +88,7 @@ class Admin extends CI_Controller {
 
 	public function accCust($id)
 	{
-		$data['title'] = 'Aktivasi Akun | Cupo';
+		$data['title'] = 'Activation Account | Cupo';
         $data['unreg'] = $this->user_model->aktivasiCust($id);
         if($data['unreg']){
             redirect('admin/dataCust', 'refresh');
@@ -96,7 +99,7 @@ class Admin extends CI_Controller {
 
 	public function addMitra()
     {
-        $data['title'] = 'Data Mitra | Cupo';
+        $data['title'] = 'Partner Data | Cupo';
         $this->form_validation->set_rules('fullname', 'fullname', 'trim|required|max_length[50]');
         $this->form_validation->set_rules('username', 'username', 'trim|required');
         $this->form_validation->set_rules('email', 'email', 'trim|required|valid_email|max_length[60]');
@@ -116,7 +119,7 @@ class Admin extends CI_Controller {
 
 	public function addCust()
     {
-        $data['title'] = 'Data Customer | Cupo';
+        $data['title'] = 'Customer Data | Cupo';
         $this->form_validation->set_rules('fullname', 'Fullname', 'required');
 		$this->form_validation->set_rules('username', 'Username', 'required');
 		$this->form_validation->set_rules('email', 'Email', 'required');
@@ -150,7 +153,7 @@ class Admin extends CI_Controller {
 
 	public function editAdmin($id)
 	{
-		$data['title'] = 'Edit Data User | Cupo';
+		$data['title'] = 'Edit User Data | Cupo';
 		$data['user'] = $this->user_model->getUserByID($id);
         $this->form_validation->set_rules('fullname', 'fullname', 'trim|required|max_length[50]');
         $this->form_validation->set_rules('username', 'username', 'trim|required');
@@ -214,7 +217,7 @@ class Admin extends CI_Controller {
 
 	public function editMitra($id)
 	{
-		$data['title'] = 'Data Mitra | Cupo';
+		$data['title'] = 'Partner Data | Cupo';
 		$data['user'] = $this->user_model->getUserByID($id);
         $this->form_validation->set_rules('fullname', 'fullname', 'trim|required|max_length[50]');
         $this->form_validation->set_rules('username', 'username', 'trim|required');
@@ -239,7 +242,7 @@ class Admin extends CI_Controller {
 
 	public function editCust($id)
 	{
-		$data['title'] = 'Data Customer | Cupo';
+		$data['title'] = 'Customer Data | Cupo';
 		$data['user'] = $this->user_model->getCustByID($id);
         $this->form_validation->set_rules('fullname', 'fullname', 'trim|required|max_length[50]');
         $this->form_validation->set_rules('username', 'username', 'trim|required');

@@ -44,6 +44,21 @@ class User_model extends CI_Model
         }
     }
 
+    public function hitung()
+    {
+        try{
+            $response = $this->_user->request('GET', 'api/users/getRows', [
+                'headers' => [
+                    'X-API-KEY' => 'apikey'
+                ]
+            ]);
+            $result = json_decode($response->getBody()->getContents(), true);
+            return $result['data'];
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            // echo $e->getResponse()->getBody()->getContents();
+        }
+    }
+
     public function aktivasiAcc($id)
     {
         try{

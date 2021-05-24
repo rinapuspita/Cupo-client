@@ -9,8 +9,8 @@
         <div class="table-responsive">
         <?= form_error('user','<div class="alert alert-danger" role="alert">', '</div>'); ?>
   
-        <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newRoleModal">Tambah customer Baru</a>
-        <a href="<?= base_url() . 'admin/dataCustActiv' ?>" class="btn btn-primary mb-3">Aktivasi Data Customer</a>
+        <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newRoleModal">Add New Customer</a>
+        <a href="<?= base_url() . 'admin/dataCustActiv' ?>" class="btn btn-primary mb-3">Customer Activation Data</a>
           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
               <tr>
@@ -19,7 +19,7 @@
                 <th scope="col">Username</th>
                 <th scope="col">Email</th>
                 <th scope="col">Password</th>
-                <th scope="col">Limit Pinjam</th>
+                <th scope="col">Limit</th>
                 <th scope="col">Action</th>                      
               </tr>
             </thead>
@@ -42,7 +42,7 @@
                   </span>
                   <!-- <span class="text">Edit</span> -->
                 </a>
-                <a href="<?= base_url() . 'admin/hapusCust/' . $r['id_cust'] ?>" onclick="return confirm('Hapus data ini?')" class="btn btn-danger btn-icon-split">
+                <a href="<?= base_url() . 'admin/hapusCust/' . $r['id_cust'] ?>" onclick="return confirm('Delete this data?')" class="btn btn-danger btn-icon-split">
                   <span class="icon text-white-50">
                     <i class="fas fa-trash"></i>
                   </span>
@@ -54,7 +54,7 @@
               <?php endforeach; ?>
               <?php } else{?>
                 <div class="alert alert-danger" role="alert">
-                data tidak ditemukan.
+                Empty data.
                 </div>
                 <?php } ?>
             </tbody>
@@ -80,16 +80,16 @@
       <form action="<?= base_url('admin/addCust'); ?>" method="post">
         <div class="modal-body">
         <div class="form-group">
-          <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Tambah nama lengkap customer">
+          <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Fullname">
         </div>
         <div class="form-group">
-          <input type="text" class="form-control" id="username" name="username" placeholder="Username customer">
+          <input type="text" class="form-control" id="username" name="username" placeholder="Username">
         </div>
         <div class="form-group">
-          <input type="text" class="form-control" id="email" name="email" placeholder="Email customer">
+          <input type="text" class="form-control" id="email" name="email" placeholder="Email">
         </div>
         <div class="form-group">
-          <input type="password" class="form-control" id="password" name="password" placeholder="Password customer">
+          <input type="password" class="form-control" id="password" name="password" placeholder="Password">
         </div>
         </div>
         <div class="modal-footer">

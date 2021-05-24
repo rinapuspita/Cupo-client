@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Laporan Data</title>
+	<title>Report Data</title>
 	<style type="text/css">
 		#outtable{
 			padding: 20px;
@@ -38,18 +38,19 @@
 </head>
 <body>
 	<div id="outtable">
-    <h3>Laporan Data Pengembalian</h3>
+    <h3>Report Return Data</h3>
+	<?php if($this->session->userdata('user_id') && !empty($kembali)) { ?>
 		<table width="100%">
             <thead>
             <tr>
                 <th scope="col">No</th>
-                <th scope="col">Produk</th>
-                <th scope="col">Nama Customer</th>
-                <th scope="col">Lokasi Mitra</th>
-                <th scope="col">Tanggal Pinjam</th>
-                <th scope="col">Terlambat</th>
-                <th scope="col">Denda</th>
-                <th scope="col">Catatan</th>
+                <th scope="col">Product</th>
+                <th scope="col">Name Customer</th>
+                <th scope="col">Partner Location</th>
+                <th scope="col">Borrowed Date</th>
+                <th scope="col">Late</th>
+                <th scope="col">Fine</th>
+                <th scope="col">Note</th>
             </tr>
             </thead>
 			<tbody>
@@ -71,6 +72,11 @@
             <?php $no++; ?>
 				<?php endforeach; ?>
 		</table>
+		<?php } else{?>
+                <div class="alert alert-danger" role="alert">
+                Empty Data.
+                </div>
+                <?php } ?>
 	</div>
 
 </body>

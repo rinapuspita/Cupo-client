@@ -11,7 +11,7 @@ class Pengembalian extends CI_Controller {
 
 	public function index() 
 	{
-		$data['title'] = 'Data Pengembalian | Cupo';
+		$data['title'] = 'Return Data | Cupo';
         $data['kembali'] = $this->pengembalian_model->getKembali();
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebar', $data);
@@ -23,7 +23,7 @@ class Pengembalian extends CI_Controller {
 	public function getMitra() 
 	{
 		$id = $this->session->userdata('user_id');
-		$data['title'] = 'Data Pengembalian | Cupo';
+		$data['title'] = 'Return Data | Cupo';
         $data['kembali'] = $this->pengembalian_model->getKembaliMitra($id);
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebar', $data);
@@ -35,7 +35,7 @@ class Pengembalian extends CI_Controller {
 	public function getMitraAktivasi() 
 	{
 		$id = $this->session->userdata('user_id');
-		$data['title'] = 'Data Pengembalian | Cupo';
+		$data['title'] = 'Return Data | Cupo';
         $data['kembali'] = $this->pengembalian_model->getKembaliActive($id);
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebar', $data);
@@ -46,7 +46,7 @@ class Pengembalian extends CI_Controller {
 
 	public function accKembali($id)
 	{
-		$data['title'] = 'Aktivasi Akun | Cupo';
+		$data['title'] = 'Return Activation | Cupo';
         $data['kembali'] = $this->pengembalian_model->aktivasiAcc($id);
         if($data['kembali']){
             redirect('pengembalian/getMitra', 'refresh');
@@ -57,7 +57,7 @@ class Pengembalian extends CI_Controller {
 
 	public function editMitra($id)
 	{
-		$data['title'] = 'Data Peminjaman | Cupo';
+		$data['title'] = 'Return Data | Cupo';
 		$data['kembali'] = $this->pengembalian_model->getKembaliByID($id);
         $this->form_validation->set_rules('id_kembali', 'ID Kembali', 'required');
         if ($this->form_validation->run() == true) {

@@ -38,12 +38,13 @@
 </head>
 <body>
 	<div id="outtable">
-    <h3>Laporan Data Cust</h3>
+    <h3>Report Customer Data</h3>
+	<?php if($this->session->userdata('user_id') && !empty($user)) { ?>
 		<table width="100%">
             <thead>
             <tr>
                 <th scope="col">No</th>
-                <th scope="col">Nama Customer</th>
+                <th scope="col">Customer Name</th>
                 <th scope="col">Username</th>
                 <th scope="col">Email</th>
             </tr>
@@ -62,6 +63,11 @@
             <?php $no++; ?>
 				<?php endforeach; ?>
 		</table>
+		<?php } else{?>
+                <div class="alert alert-danger" role="alert">
+                Empty Data.<br>
+                </div>
+                <?php } ?>
 	</div>
 
 </body>
