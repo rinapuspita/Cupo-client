@@ -195,6 +195,7 @@ class User_model extends CI_Model
             "fullname" => $this->input->post('fullname', true),
             "username" => $this->input->post('username', true),
             "email" => $this->input->post('email', true),
+            "no_hp" => $this->input->post('no_hp', true),
             "password" => $this->input->post('password', true),
             "X-API-KEY" => 'apikey'
         ];

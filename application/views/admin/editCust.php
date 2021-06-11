@@ -34,11 +34,12 @@
             </div>
       </div>
       <div class="form-group row">
-            <!-- <label for="password" class="col-sm-2 col-form-label">Password</label> -->
+            <label for="email" class="col-sm-2 col-form-label">No HP</label>
             <div class="col-sm-10">
-            <input type="hidden" class="form-control" id="password" name="password" placeholder="Password" value="<?= $user['password'] ?>">
+            <input type="text" class="form-control" id="no_hp" name="no_hp" placeholder="No HP" value="<?= $user['no_hp'] ?>">
+            <?= form_error('no_hp','<small class="text-danger pl-3">','</small>'); ?> 
             </div>
-          </div>
+      </div>
             <div class="form-group row justify-content-end">
               <div class="col-sm-10">
                 <button type="submit" class="btn btn-primary">Update</button>

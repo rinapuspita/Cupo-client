@@ -24,6 +24,12 @@
             <input type="date" class="form-control" id="tanggal_haruskembali" name="tanggal_haruskembali" value="<?= $pinjam['tanggal_haruskembali'] ?>">
             </div>
         </div>
+        <div class="form-group row">
+            <label for="status" class="col-sm-2 col-form-label">Note</label>
+            <div class="col-sm-10">
+            <input type="text" class="form-control" id="status" name="status" value="<?= $pinjam['status'] ?>">
+            </div>
+        </div>
             <div class="form-group row justify-content-end">
               <div class="col-sm-10">
                 <button type="submit" class="btn btn-primary">Edit</button>

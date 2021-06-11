@@ -10,7 +10,7 @@
               </div>
               <form class="user" method="post" action="<?= base_url('auth/registration'); ?>">
               <div class="form-group">
-                  <input type="text" class="form-control form-control-user" id="fullname" name="fullname" placeholder="Full Name" value="<?= set_value('fullname'); ?>">
+                  <input type="text" class="form-control form-control-user" id="fullname" name="fullname" placeholder="Company Name" value="<?= set_value('fullname'); ?>">
                   <?= form_error('fullname','<small class="text-danger pl-3">','</small>'); ?>                  
                 </div>
                 <div class="form-group">
@@ -33,9 +33,6 @@
                 </button>
               </form>
               <hr>
-              <div class="text-center">
-                <a class="small" href="<?= base_url('auth/forgotpassword'); ?>">Forgot Password?</a>
-              </div>
               <div class="text-center">
                 <a class="small" href="<?= base_url('auth'); ?>">Already have an account? Login!</a>
               </div>

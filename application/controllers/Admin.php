@@ -106,7 +106,7 @@ class Admin extends CI_Controller {
         $this->form_validation->set_rules('password', 'password', 'trim|required|max_length[25]');
         if ($this->form_validation->run() == true) {
             if($this->user_model->userRegister()>0){
-                echo "yey berhasil";
+                // echo "yey berhasil";
                 redirect('admin/dataMitraActiv', 'refresh');
             } else{
                 echo "yah gagal";
@@ -126,7 +126,7 @@ class Admin extends CI_Controller {
 		$this->form_validation->set_rules('password', 'Password', 'required');
         if ($this->form_validation->run() == true) {
             if($this->user_model->custRegister()>0){
-                echo "yey berhasil";
+                // echo "yey berhasil";
                 redirect('admin/dataCustActiv', 'refresh');
             } else{
                 echo "yah gagal";
@@ -161,7 +161,7 @@ class Admin extends CI_Controller {
 
         if ($this->form_validation->run() == true) {
             if($this->user_model->editMitra()>0){
-                echo "yey berhasil";
+                // echo "yey berhasil";
                 redirect('admin/dataAdmin', 'refresh');
             } else{
                 echo "yah gagal";
@@ -186,7 +186,7 @@ class Admin extends CI_Controller {
     	$this->form_validation->set_rules('passwordConf', 'Konfirmasi Password', 'trim|required|matches[passwordBaru]');
 		if ($this->form_validation->run() == true) {
             if($this->user_model->editMitra()>0){
-                echo "yey berhasil";
+                // echo "yey berhasil";
                 redirect('admin/dataAdmin', 'refresh');
             } else{
                 echo "yah gagal";
@@ -224,7 +224,7 @@ class Admin extends CI_Controller {
         $this->form_validation->set_rules('email', 'email', 'trim|required|valid_email|max_length[60]');
         if ($this->form_validation->run() == true) {
             if($this->user_model->editMitra()>0){
-                echo "yey berhasil";
+                // echo "yey berhasil";
                 redirect('admin/dataMitra', 'refresh');
             } else{
                 echo "yah gagal";
@@ -249,7 +249,7 @@ class Admin extends CI_Controller {
         $this->form_validation->set_rules('email', 'email', 'trim|required|valid_email|max_length[60]');
         if ($this->form_validation->run() == true) {
             if($this->user_model->editCust()>0){
-                echo "yey berhasil";
+                // echo "yey berhasil";
                 redirect('admin/dataCust', 'refresh');
             } else{
                 echo "yah gagal";
@@ -269,7 +269,7 @@ class Admin extends CI_Controller {
 	{
 		$hapus = $this->user_model->hapusMitra($id);
         if($hapus>0){
-            echo 'yey berhasil';
+            // echo 'yey berhasil';
             $this->session->set_flashdata('flash', 'Dihapus');
             redirect('admin/dataMitra', 'refresh');
         }  else{
@@ -282,7 +282,7 @@ class Admin extends CI_Controller {
 	{
 		$hapus = $this->user_model->hapusCust($id);
         if($hapus>0){
-            echo 'yey berhasil';
+            // echo 'yey berhasil';
             $this->session->set_flashdata('flash', 'Dihapus');
             redirect('admin/dataCust', 'refresh');
         }  else{

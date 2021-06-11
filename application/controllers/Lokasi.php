@@ -31,7 +31,7 @@ class Lokasi extends CI_Controller {
         $this->form_validation->set_rules('longitude', 'longitude', 'required');
         if ($this->form_validation->run() == true) {
             if($this->lokasi_model->addLokasi()>0){
-                echo "yey berhasil";
+                // echo "yey berhasil";
                 redirect('lokasi', 'refresh');
             } else{
                 echo "yah gagal";
@@ -52,7 +52,7 @@ class Lokasi extends CI_Controller {
         $this->form_validation->set_rules('longitude', 'longitude', 'required');
         if ($this->form_validation->run() == true) {
             if($this->lokasi_model->editLokasi()>0){
-                echo "yey berhasil";
+                // echo "yey berhasil";
                 redirect('lokasi', 'refresh');
             } else{
                 echo "yah gagal";
@@ -72,7 +72,7 @@ class Lokasi extends CI_Controller {
 	{
 		$hapus = $this->lokasi_model->hapusLokasi($id);
         if($hapus>0){
-            echo 'yey berhasil';
+            // echo 'yey berhasil';
             $this->session->set_flashdata('flash', 'Dihapus');
             redirect('lokasi', 'refresh');
         }  else{

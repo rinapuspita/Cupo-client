@@ -150,7 +150,14 @@ class Pengembalian_model extends CI_Model {
 
     public function delete($id){
     try {
-        $res = $this->_kembali->request('DELETE', 'api/pengembalian/' . $id . ')');
+        $res = $this->_kembali->request('DELETE', 'api/pengembalian/' , [
+            'headers' => [
+                'X-API-KEY' => 'apikey',
+            ],
+            'form_params' => [
+                'id_kembali' => $id,
+            ]
+        ]);
         return json_decode($res->getBody()->getContents(), true);
     } catch (\GuzzleHttp\Exception\ClientException $e) {
         echo $e->getResponse()->getBody()->getContents();

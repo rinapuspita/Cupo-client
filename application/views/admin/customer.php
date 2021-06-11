@@ -18,6 +18,7 @@
                 <th scope="col">Fullname</th>
                 <th scope="col">Username</th>
                 <th scope="col">Email</th>
+                <th scope="col">No HP</th>
                 <th scope="col">Password</th>
                 <th scope="col">Limit</th>
                 <th scope="col">Action</th>                      
@@ -33,6 +34,7 @@
                 <td><?= $r['fullname']; ?></td>
                 <td><?= $r['username']; ?></td>
                 <td><?= $r['email']; ?></td>
+                <td><?= $r['no_hp']; ?></td>
                 <td><?= $r['password']; ?></td>
                 <td><?= $r['limit_pinjam']; ?></td>
                 <td>
@@ -87,6 +89,9 @@
         </div>
         <div class="form-group">
           <input type="text" class="form-control" id="email" name="email" placeholder="Email">
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" id="no_hp" name="no_hp" placeholder="No HP">
         </div>
         <div class="form-group">
           <input type="password" class="form-control" id="password" name="password" placeholder="Password">

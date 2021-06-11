@@ -149,6 +149,7 @@ class Peminjaman_model extends CI_Model {
     {
         try {
             $id = $this->input->post('id_pinjam');
+            $status = $this->input->post('status', true);
             $tanggal_pinjam = $this->input->post('tanggal_pinjam', true);
             $tanggal_haruskembali = $this->input->post('tanggal_haruskembali', true);
             $res = $this->_pinjam->request('PUT', 'api/peminjaman/', [
@@ -158,7 +159,8 @@ class Peminjaman_model extends CI_Model {
                 'form_params' => [
                     'id_pinjam' => $id,
                     'tanggal_pinjam' => $tanggal_pinjam,
-                    'tanggal_haruskembali' => $tanggal_haruskembali
+                    'tanggal_haruskembali' => $tanggal_haruskembali,
+                    'status' => $status
                 ]
             ]);
             return json_decode($res->getBody()->getContents(), true);
@@ -169,7 +171,14 @@ class Peminjaman_model extends CI_Model {
 
     public function delete($id){
     try {
-        $res = $this->_pinjam->request('DELETE', 'api/peminjaman/' . $id . ')');
+        $res = $this->_pinjam->request('DELETE', 'api/peminjaman/', [
+            'headers' => [
+                'X-API-KEY' => 'apikey',
+            ],
+            'form_params' => [
+                'id_pinjam' => $id,
+            ]
+        ]);
         return json_decode($res->getBody()->getContents(), true);
     } catch (\GuzzleHttp\Exception\ClientException $e) {
         echo $e->getResponse()->getBody()->getContents();

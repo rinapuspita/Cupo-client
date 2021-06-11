@@ -8,10 +8,10 @@
         <!-- <i class="fas fa-laugh-wink"></i> -->
     </div>
     <?php if($this->session->userdata('level') == '1'){ ?>
-        <div class="sidebar-brand-text mx-3">Cupo Admin</div>
+        <div class="sidebar-brand-text mx-3">Cupo Admin </div>
     <?php } ?>
     <?php if($this->session->userdata('level') == '2'){ ?>
-        <div class="sidebar-brand-text mx-3">Cupo Partner</div>
+        <div class="sidebar-brand-text mx-3">Cupo Partner <?= $this->session->userdata('user_id') ?></div>
     <?php } ?>
 </a>
 

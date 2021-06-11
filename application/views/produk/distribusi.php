@@ -30,7 +30,13 @@
                 <td><?= $r['nama_produk']; ?></td>
                 <td><img src="<?= 'https://server-cupo.xyz/assets/images/'. $r['qr_code']; ?>" style="width: 100px; height:100px;"></td>
                 <td>
-                <?= $r['status'];?>
+                <?php if($r['status'] == 1){?>
+                  <?= 'Available'?>
+                <?php } elseif($r['status'] == 2){?>
+                  <?= 'Maintenance'?>
+                <?php } else{?>
+                  <?= 'Not Available'?>
+                <?php }?>
                 </td>
                 <td><?= $r['id_mitra']; ?></td>
                 <td>

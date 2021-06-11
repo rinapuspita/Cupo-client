@@ -62,7 +62,7 @@ class Pengembalian extends CI_Controller {
         $this->form_validation->set_rules('id_kembali', 'ID Kembali', 'required');
         if ($this->form_validation->run() == true) {
 			if($this->pengembalian_model->update()>0){
-				echo "yey berhasil";
+				// echo "yey berhasil";
 				redirect('pengembalian/getMitra', 'refresh');
 			} else{
 				echo "yah gagal";
@@ -80,7 +80,7 @@ class Pengembalian extends CI_Controller {
 	{
 		$hapus = $this->pengembalian_model->delete($id);
         if($hapus>0){
-            echo 'yey berhasil';
+            // echo 'yey berhasil';
             $this->session->set_flashdata('flash', 'Dihapus');
             redirect('pengembalian/getMitra', 'refresh');
         }  else{

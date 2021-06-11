@@ -83,7 +83,7 @@ class Peminjaman extends CI_Controller {
 		$this->form_validation->set_rules('id_pinjam', 'ID Pinjam', 'required');
         if ($this->form_validation->run() == true) {
 			if($this->peminjaman_model->update()>0){
-				echo "yey berhasil";
+				// echo "yey berhasil";
 				redirect('peminjaman/getMitra', 'refresh');
 			} else{
 				echo "yah gagal";
@@ -102,7 +102,7 @@ class Peminjaman extends CI_Controller {
 	{
 		$hapus = $this->peminjaman_model->delete($id);
         if($hapus>0){
-            echo 'yey berhasil';
+            // echo 'yey berhasil';
             $this->session->set_flashdata('flash', 'Dihapus');
             redirect('peminjaman/getMitra', 'refresh');
         }  else{

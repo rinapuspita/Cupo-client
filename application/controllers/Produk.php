@@ -25,7 +25,7 @@ class Produk extends CI_Controller {
     {
         $id = $this->session->userdata('user_id');
         $data['title'] = 'Data Product | Cupo';
-        $data['produk'] = $this->produk_model->getM_Produk($id);
+        $data['produk'] = $this->produk_model->getM_Stok($id);
         $this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebar', $data);
 		$this->load->view('templates/topbar', $data);
@@ -96,10 +96,10 @@ class Produk extends CI_Controller {
     {
         $data['title'] = 'Data Product | Cupo';
         $data['produk'] = $this->produk_model->getProduk();
-        $this->form_validation->set_rules('nama_produk', 'Nama Produk', 'required|is_unique[produk.nama_produk]');
+        $this->form_validation->set_rules('nama_produk', 'Nama Produk', 'required');
         if ($this->form_validation->run() == true) {
-            // if($this->produk_model->addProduk()>0){
-                echo "yey berhasil";
+            if($this->produk_model->addProduk()>0){
+                // echo "yey berhasil";
                 redirect('produk', 'refresh');
             } else{
                 // echo "yah gagal";
@@ -115,9 +115,9 @@ class Produk extends CI_Controller {
                 // $this->form_validation->set_message('nama_produk');
             }
 
-        //   } else {
-        //     redirect('produk', 'refresh');
-        //   }
+          } else {
+            redirect('produk', 'refresh');
+          }
     }
 
     public function edit($id)
@@ -145,7 +145,7 @@ class Produk extends CI_Controller {
     {
         $hapus = $this->produk_model->delete($id);
         if($hapus>0){
-            echo 'yey berhasil';
+            // echo 'yey berhasil';
             $this->session->set_flashdata('flash', 'Dihapus');
             redirect('produk');
         }  else{

@@ -48,7 +48,7 @@
                   </span>
                   <!-- <span class="text">Edit</span> -->
                 </a>
-                <a href="<?= base_url() . 'peminjaman/hapus/' . $p['id_pinjam'] ?>" onclick="return confirm('Delete this data?')" class="btn btn-danger btn-icon-split">
+                <a href="<?= base_url() . 'peminjaman/hapusMitra/' . $p['id_pinjam'] ?>" onclick="return confirm('Delete this data?')" class="btn btn-danger btn-icon-split">
                   <span class="icon text-white-50">
                     <i class="fas fa-trash"></i>
                   </span>

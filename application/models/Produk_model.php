@@ -105,6 +105,23 @@ class Produk_model extends CI_Model {
         }
     }
 
+    public function getM_Stok($id)
+    {
+        try{
+            $response = $this->_produk->request('GET', 'api/produk/mStok',[
+                'query' => [
+                    'X-API-KEY' => 'apikey',
+                    'id_mitra' => $id
+                ]
+            ]);
+            $result = json_decode($response->getBody()->getContents(), true);
+            return $result['data'];
+        } catch(\GuzzleHttp\Exception\ClientException $e) {
+            // echo $e->getResponse()->getBody()->getContents();
+            $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Data Produk Kosong</div>');
+        }
+    }
+
     public function updateLokasi($lokasi, $id)
     {
         try{
@@ -170,7 +187,9 @@ class Produk_model extends CI_Model {
             $result = json_decode($response->getBody()->getContents(), true);
             return $result;
         } catch(\GuzzleHttp\Exception\ClientException $e) {
-            echo $e->getResponse()->getBody()->getContents();
+            $statusCode = $e->getResponse()->getBody()->getContents();
+            // echo $statusCode('message');
+            $this->session->set_flashdata('error','<div class="alert alert-danger" role="alert">Duplicate entry for product name</div>');
         }
 
     }

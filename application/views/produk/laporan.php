@@ -39,7 +39,7 @@
 <body>
 	<div id="outtable">
     <h3>Report Product Data</h3>
-	<?php if($this->session->userdata('user_id') && !empty($porduk)) { ?>
+	<?php if($this->session->userdata('user_id') && !empty($produk)) { ?>
 		<table width="100%">
             <thead>
             <tr>
